@@ -305,6 +305,8 @@ class ArtifactProcessingBindingStateRepository:
         binding_name: str,
         checkpoint_at: datetime | None = None,
         /,
+        *,
+        preserve_schedule_checkpoint: bool = False,
     ) -> StoredArtifactProcessingBindingState:
         """Freeze a bounded admission scan; caller must hold its valid fence."""
 
@@ -315,7 +317,11 @@ class ArtifactProcessingBindingStateRepository:
         if checkpoint.tzinfo is not None:
             checkpoint = checkpoint.astimezone(UTC).replace(tzinfo=None)
         values = {
-            "last_schedule_checkpoint_at": checkpoint,
+            "last_schedule_checkpoint_at": (
+                current.last_schedule_checkpoint_at
+                if preserve_schedule_checkpoint and current is not None
+                else checkpoint
+            ),
             "scan_generation": 1 if current is None else current.scan_generation + 1,
             "scan_in_progress": True,
             "scan_upper_pending_sequence": await ArtifactProcessingIntentRepository().max_sequence(
