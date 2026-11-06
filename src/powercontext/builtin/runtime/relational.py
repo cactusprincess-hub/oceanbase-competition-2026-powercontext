@@ -158,7 +158,11 @@ from powercontext.builtin.persistence.supervision import (
     ArtifactProcessingBindingStateRepository,
     ArtifactProcessingLeaseRepository,
 )
-from powercontext.builtin.persistence.tables import ARTIFACT_HEADS_TABLE, SOURCE_JOURNAL_HEADS_TABLE
+from powercontext.builtin.persistence.tables import (
+    ARTIFACT_HEADS_TABLE,
+    SOURCE_JOURNAL_HEADS_TABLE,
+    SOURCE_LIFECYCLE_NODES_TABLE,
+)
 from powercontext.builtin.persistence.topic_memory import TopicMemoryRepository
 from powercontext.builtin.persistence.topic_memory_index import NoTopicMemoryIndex, TopicMemoryIndex
 from powercontext.builtin.persistence.topic_memory_management import TopicMemoryManagementWriter
@@ -991,15 +995,40 @@ class RelationalContexts:
             embedding_profile = query_embedding.embedding_profile
         scope = validate_scope_id(scope_id)
         async with self.database.transaction() as connection:
-            return await self.repositories.topic_memories.search(
+            disabled = (
+                await connection.execute(
+                    select(SOURCE_LIFECYCLE_NODES_TABLE.c.reference).where(
+                        SOURCE_LIFECYCLE_NODES_TABLE.c.scope_id == scope,
+                        SOURCE_LIFECYCLE_NODES_TABLE.c.kind == "topic",
+                        SOURCE_LIFECYCLE_NODES_TABLE.c.available.is_(False),
+                    )
+                )
+            ).scalars().all()
+            result = await self.repositories.topic_memories.search(
                 connection,
                 scope,
                 query,
-                limit=limit,
+                limit=min(20, limit + len(disabled)),
                 mode=mode,
                 query_vector=query_vector,
                 embedding_profile=embedding_profile,
                 admission=admission,
+            )
+            if not disabled:
+                return result
+            hidden = {
+                (ref.family, ref.artifact_id, ref.revision)
+                for ref in (ArtifactRef.model_validate_json(value) for value in disabled)
+            }
+            return result.model_copy(
+                update={
+                    "hits": tuple(
+                        hit
+                        for hit in result.hits
+                        if (hit.artifact_ref.family, hit.artifact_ref.artifact_id, hit.artifact_ref.revision)
+                        not in hidden
+                    )[:limit]
+                }
             )
 
     async def search_skills(
