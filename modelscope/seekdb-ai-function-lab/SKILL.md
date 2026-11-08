@@ -3,8 +3,6 @@ name: seekdb-ai-function-lab
 description: Develop, test, and diagnose seekdb AI_PROMPT, AI_COMPLETE, AI_EMBED, and AI_RERANK SQL functions with a deterministic local mock service. Use for seekdb AI model registration, endpoint integration, batching, response mapping, or provider compatibility; do not use for evaluating model quality.
 ---
 
-<!-- OB-S:6Gw8W4Q2ZRbLTAogIXVYvA -->
-
 # seekdb AI Function Lab
 
 Use this skill to reproduce AI SQL behavior without external credentials or nondeterministic model output.
@@ -36,3 +34,5 @@ python3 scripts/mock_ai_service.py --port 8000
 ```
 
 The service binds to `127.0.0.1` by default and implements OpenAI-compatible chat completions and embeddings, Ollama generate/chat/embed routes, and a rerank route. Use `--help` for deterministic delay and failure controls. Read [references/mock-api.md](references/mock-api.md) only when configuring faults or asserting request logs.
+
+<!-- OB-S:6Gw8W4Q2ZRbLTAogIXVYvA -->
