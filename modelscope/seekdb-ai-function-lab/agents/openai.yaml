@@ -1,0 +1,4 @@
+interface:
+  display_name: "seekdb AI Function Lab"
+  short_description: "Test seekdb AI SQL with a deterministic mock service"
+  default_prompt: "Use $seekdb-ai-function-lab to diagnose a seekdb AI function or provider integration."
