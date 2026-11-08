@@ -83,6 +83,31 @@ _SEARCH_STOPWORDS = frozenset({
     "with",
 })
 
+_FINANCIAL_QUERY_EXPANSIONS = (
+    (("balance sheet", "statement of financial position"), ("consolidated balance sheet", "assets liabilities equity")),
+    (("cash flow", "cash flows"), ("consolidated statement of cash flows", "operating investing financing activities")),
+    (
+        ("income statement", "p&l", "profit and loss"),
+        ("consolidated statement of income", "net sales net revenue operating income operating profit"),
+    ),
+    (("ebitda",), ("operating income operating profit depreciation amortization",)),
+    (("capex", "capital expenditure", "capital expenditures"), ("purchases property plant equipment",)),
+    (("revenue", "revenues"), ("net sales",)),
+    (("geography", "geographies", "geographic", "operates"), ("regions markets segments operations",)),
+    (
+        ("legal battle", "legal battles", "legal dispute", "legal disputes"),
+        ("legal proceedings litigation contingencies",),
+    ),
+    (("restructuring cost", "restructuring costs"), ("restructuring charges expenses",)),
+)
+
+_FINANCIAL_TERM_EQUIVALENTS = {
+    "profit": "income",
+    "profits": "income",
+    "revenue": "sales",
+    "revenues": "sales",
+}
+
 
 class PDFDocumentInput(BaseModel):
     document_id: str
@@ -250,9 +275,23 @@ def _query_variants(question: str) -> tuple[str, ...]:
     analyzed = analyze_fts_query(question).split()
     salient = tuple(dict.fromkeys(term for term in analyzed if term not in _SEARCH_STOPWORDS and len(term) > 1))
     variants = [question]
+    expansions = _financial_query_expansions(question)
+    variants.extend(expansions)
     variants.extend(" ".join(pair) for pair in pairwise(salient))
-    variants.extend(form for term in salient for form in _term_forms(term))
+    expansion_terms = tuple(term for expansion in expansions for term in analyze_text(expansion).split())
+    variants.extend(" ".join(pair) for expansion in expansions for pair in pairwise(analyze_text(expansion).split()))
+    variants.extend(form for term in (*salient, *expansion_terms) for form in _term_forms(term))
     return tuple(dict.fromkeys(variant for variant in variants if variant.strip()))
+
+
+def _financial_query_expansions(question: str) -> tuple[str, ...]:
+    normalized = " ".join(analyze_text(question).split())
+    return tuple(
+        expansion
+        for triggers, expansions in _FINANCIAL_QUERY_EXPANSIONS
+        if any(trigger in normalized for trigger in triggers)
+        for expansion in expansions
+    )
 
 
 def _rank_pdf_hits(
@@ -262,15 +301,20 @@ def _rank_pdf_hits(
     best_scores: dict[tuple[str, int, str, str], float],
 ) -> tuple[MemoryHit, ...]:
     proper_names = {
-        match.group().casefold()
-        for match in re.finditer(r"\b[A-Z][A-Za-z]+\b", question)
-        if match.start() > 0
+        match.group().casefold() for match in re.finditer(r"\b[A-Z][A-Za-z]+\b", question) if match.start() > 0
     }
-    query_terms = tuple(
+    original_query_terms = tuple(
         _term_stem(term)
         for term in analyze_fts_query(question).split()
         if term not in _SEARCH_STOPWORDS and term not in proper_names and len(term) > 1
     )
+    expansion_query_terms = tuple(
+        _term_stem(term)
+        for expansion in _financial_query_expansions(question)
+        for term in analyze_text(expansion).split()
+        if term not in _SEARCH_STOPWORDS and len(term) > 1
+    )
+    query_terms = (*original_query_terms, *expansion_query_terms)
     hit_terms = [tuple(_term_stem(term) for term in analyze_text(hit.text).split()) for hit in hits]
     document_frequency = Counter(term for terms in hit_terms for term in set(terms))
     query_counts = Counter(query_terms)
@@ -295,12 +339,29 @@ def _rank_pdf_hits(
             + 4.0 * coverage
             + 0.8 * phrase_matches
             + 0.3 * nearby_matches
-            + 6.0 * rank_scores[identity]
-            + 8.0 * best_scores[identity]
+            + _financial_section_score(question, hits[index].text)
+            + 36.0 * rank_scores[identity]
+            + 48.0 * best_scores[identity]
         )
         return (-total, hits[index].entry_id.encode(), hits[index].entry_version_id.encode())
 
     return tuple(hits[index] for index in sorted(range(len(hits)), key=score))
+
+
+def _financial_section_score(question: str, text: str) -> float:
+    query = question.casefold()
+    page = text.casefold()
+    score = 0.0
+    if any(term in query for term in ("income statement", "p&l", "profit and loss")):
+        score += 24.0 * ("statement of income" in page)
+    if "cash flow" in query:
+        score += 24.0 * ("statement of cash flows" in page)
+    if any(term in query for term in ("balance sheet", "financial position")):
+        score += 24.0 * ("balance sheet" in page or "statement of financial position" in page)
+    if "ebitda" in query:
+        score += 18.0 * ("depreciation and amortization" in page)
+        score += 18.0 * ("operating income" in page or "operating profit" in page)
+    return score
 
 
 def _term_stem(term: str) -> str:
@@ -318,7 +379,7 @@ def _term_stem(term: str) -> str:
             break
     if term.endswith("ate") and len(term) > 6:
         term = term[:-1]
-    return term
+    return _FINANCIAL_TERM_EQUIVALENTS.get(term, term)
 
 
 def _term_forms(term: str) -> tuple[str, ...]:
@@ -343,7 +404,9 @@ def _terms_are_near(terms: tuple[str, ...], pair: tuple[str, str], distance: int
     left, right = pair
     left_positions = [index for index, term in enumerate(terms) if term == left]
     right_positions = [index for index, term in enumerate(terms) if term == right]
-    return any(abs(left_index - right_index) <= distance for left_index in left_positions for right_index in right_positions)
+    return any(
+        abs(left_index - right_index) <= distance for left_index in left_positions for right_index in right_positions
+    )
 
 
 async def _rank_neighboring_pages(
@@ -377,9 +440,7 @@ async def _rank_neighboring_pages(
         support = sum(
             1.0 / ((ranks[other_identity] + 5) * abs(other_page - page_number))
             for other_identity, (other_document, other_page) in locations.items()
-            if other_identity != identity
-            and other_document == document
-            and 0 < abs(other_page - page_number) <= 2
+            if other_identity != identity and other_document == document and 0 < abs(other_page - page_number) <= 2
         )
         return (rank - 60.0 * support, rank)
 
