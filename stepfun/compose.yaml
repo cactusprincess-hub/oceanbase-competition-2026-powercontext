@@ -1,0 +1,16 @@
+services:
+  seekdb:
+    image: oceanbase/seekdb:1.4.0-100000172026082615@sha256:4db4961869d554313520d6081fca29265ba6da6db7313311bd8acbed771a956b
+    ports:
+      - "127.0.0.1:${SEEKDB_PORT:-2881}:2881"
+    environment:
+      ROOT_PASSWORD: "${SEEKDB_PASSWORD:-}"
+      CPU_COUNT: "2"
+      MEMORY_LIMIT: "4G"
+      DATAFILE_SIZE: "1G"
+      DATAFILE_MAXSIZE: "4G"
+      LOG_DISK_SIZE: "2G"
+    volumes:
+      - knowledge-data:/var/lib/seekdb
+volumes:
+  knowledge-data:

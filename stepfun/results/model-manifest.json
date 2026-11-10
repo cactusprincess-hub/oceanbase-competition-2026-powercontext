@@ -1,0 +1,75 @@
+{
+  "model": {
+    "id": "Xenova/all-MiniLM-L6-v2",
+    "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+    "dimension": 384,
+    "pooling": "mean",
+    "normalize": true,
+    "maxLength": 256
+  },
+  "downloadedAt": "2026-11-10T10:28:21.228Z",
+  "files": [
+    {
+      "name": "config.json",
+      "bytes": 650,
+      "downloadMs": 662.431958,
+      "sha256": "7135149f7cffa1a573466c6e4d8423ed73b62fd2332c575bf738a0d033f70df7"
+    },
+    {
+      "name": "tokenizer.json",
+      "bytes": 711661,
+      "downloadMs": 1036.686041,
+      "sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0"
+    },
+    {
+      "name": "tokenizer_config.json",
+      "bytes": 366,
+      "downloadMs": 632.6641670000001,
+      "sha256": "9261e7d79b44c8195c1cada2b453e55b00aeb81e907a6664974b4d7776172ab3"
+    },
+    {
+      "name": "special_tokens_map.json",
+      "bytes": 125,
+      "downloadMs": 583.2399579999997,
+      "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+    },
+    {
+      "name": "onnx/model.onnx",
+      "bytes": 90387606,
+      "downloadMs": 5936.674291000001,
+      "sha256": "759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e"
+    },
+    {
+      "name": "onnx/model_quantized.onnx",
+      "bytes": 22972370,
+      "downloadMs": 3368.047666999999,
+      "sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1"
+    },
+    {
+      "name": "onnx/model_fp16.onnx",
+      "bytes": 45297825,
+      "downloadMs": 4398.687541000001,
+      "sha256": "2cdb5e58291813b6d6e248ed69010100246821a367fa17b1b81ae9483744533d"
+    }
+  ],
+  "downloadTotalMs": 16618.431623,
+  "weightBytes": {
+    "fp32": 90387606,
+    "q8": 22972370,
+    "fp16": 45297825
+  },
+  "weightCompression": {
+    "q8": 3.9346225922706277,
+    "fp16": 1.995407196703153
+  },
+  "sharedBytes": 712802,
+  "bundleBytes": {
+    "fp32": 91100408,
+    "q8": 23685172,
+    "fp16": 46010627
+  },
+  "bundleCompression": {
+    "q8": 3.8463055282013574,
+    "fp16": 1.9799862323110702
+  }
+}

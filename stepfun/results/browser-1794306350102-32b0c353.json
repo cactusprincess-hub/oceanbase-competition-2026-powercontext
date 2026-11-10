@@ -1,0 +1,5061 @@
+{
+  "kind": "browser-benchmark",
+  "timestamp": "2026-11-10T10:25:33.388Z",
+  "model": {
+    "id": "Xenova/all-MiniLM-L6-v2",
+    "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+    "dimension": 384,
+    "pooling": "mean",
+    "normalize": true,
+    "maxLength": 256
+  },
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36",
+  "hardwareConcurrency": 10,
+  "deviceMemoryGiB": 16,
+  "crossOriginIsolated": true,
+  "corpusDocuments": 24,
+  "queries": 12,
+  "k": 5,
+  "manifest": {
+    "model": {
+      "id": "Xenova/all-MiniLM-L6-v2",
+      "revision": "751bff37182d3f1213fa05d7196b954e230abad9",
+      "dimension": 384,
+      "pooling": "mean",
+      "normalize": true,
+      "maxLength": 256
+    },
+    "downloadedAt": "2026-11-10T09:57:26.940Z",
+    "files": [
+      {
+        "name": "config.json",
+        "bytes": 650,
+        "sha256": "7135149f7cffa1a573466c6e4d8423ed73b62fd2332c575bf738a0d033f70df7"
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 711661,
+        "sha256": "da0e79933b9ed51798a3ae27893d3c5fa4a201126cef75586296df9b4d2c62a0"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 366,
+        "sha256": "9261e7d79b44c8195c1cada2b453e55b00aeb81e907a6664974b4d7776172ab3"
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 125,
+        "sha256": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3"
+      },
+      {
+        "name": "onnx/model.onnx",
+        "bytes": 90387606,
+        "sha256": "759c3cd2b7fe7e93933ad23c4c9181b7396442a2ed746ec7c1d46192c469c46e"
+      },
+      {
+        "name": "onnx/model_quantized.onnx",
+        "bytes": 22972370,
+        "sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1"
+      },
+      {
+        "name": "onnx/model_fp16.onnx",
+        "bytes": 45297825,
+        "sha256": "2cdb5e58291813b6d6e248ed69010100246821a367fa17b1b81ae9483744533d"
+      }
+    ],
+    "weightBytes": {
+      "fp32": 90387606,
+      "q8": 22972370,
+      "fp16": 45297825
+    },
+    "weightCompression": {
+      "q8": 3.9346225922706277,
+      "fp16": 1.995407196703153
+    }
+  },
+  "runs": [
+    {
+      "label": "fp32_wasm_batch1",
+      "settings": {
+        "backend": "wasm",
+        "dtype": "fp32"
+      },
+      "batchSize": 1,
+      "collection": "bench_mwajnvm4_0",
+      "repetitions": [
+        {
+          "runtime": {
+            "backend": "wasm",
+            "dtype": "fp32",
+            "reason": "手动选择 WASM，用于降级验证或基线测试",
+            "threads": 4,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 623.625,
+          "writeMs": 128.82845900000393,
+          "refreshMs": 514.1477500000037,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 5.040000021457672,
+              "databaseMs": 13.68399999999383,
+              "vectorDatabaseMs": 3.3879999999990105,
+              "endToEndMs": 26.694999992847443
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 7.310000002384186,
+              "databaseMs": 3.913165999998455,
+              "vectorDatabaseMs": 1.059292000005371,
+              "endToEndMs": 19.80000001192093
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "bm25",
+                "metrics",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "bm25",
+                "collections",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 7.094999969005585,
+              "databaseMs": 1.7656669999996666,
+              "vectorDatabaseMs": 0.8933749999996508,
+              "endToEndMs": 15.35999995470047
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "budget",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "hnsw"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 6.5,
+              "databaseMs": 2.153041999998095,
+              "vectorDatabaseMs": 1.07587500000227,
+              "endToEndMs": 16.5450000166893
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "durability",
+                "cache",
+                "batch"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "durability",
+                "batch"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 7.299999952316284,
+              "databaseMs": 2.8815409999951953,
+              "vectorDatabaseMs": 2.514000000002852,
+              "endToEndMs": 17.0799999833107
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "refresh"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.75,
+              "databaseMs": 1.7528329999986454,
+              "vectorDatabaseMs": 0.8878750000003492,
+              "endToEndMs": 13.010000050067902
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "durability",
+                "retry"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.055000007152557,
+              "databaseMs": 2.4177080000008573,
+              "vectorDatabaseMs": 1.0175830000007409,
+              "endToEndMs": 17.055000007152557
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "rerank",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 7.069999992847443,
+              "databaseMs": 2.0968750000029104,
+              "vectorDatabaseMs": 1.0609580000018468,
+              "endToEndMs": 15.685000002384186
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "hybrid",
+                "budget",
+                "metrics"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "metrics",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.319999992847443,
+              "databaseMs": 2.5951249999998254,
+              "vectorDatabaseMs": 1.1043749999953434,
+              "endToEndMs": 15.824999988079071
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 7.899999976158142,
+              "databaseMs": 1.9653340000004391,
+              "vectorDatabaseMs": 1.1157080000048154,
+              "endToEndMs": 15.324999988079071
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 8.7049999833107,
+              "databaseMs": 2.748457999994571,
+              "vectorDatabaseMs": 0.9945410000000265,
+              "endToEndMs": 27.105000019073486
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "rerank",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "wal",
+                "cache",
+                "gpu"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 7.6049999594688416,
+              "databaseMs": 2.4358329999959096,
+              "vectorDatabaseMs": 2.6003750000018044,
+              "endToEndMs": 18.444999992847443
+            }
+          ]
+        },
+        {
+          "runtime": {
+            "backend": "wasm",
+            "dtype": "fp32",
+            "reason": "手动选择 WASM，用于降级验证或基线测试",
+            "threads": 4,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 623.3600000143051,
+          "writeMs": 85.02587499999936,
+          "refreshMs": 506.9755839999998,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 5.199999988079071,
+              "databaseMs": 3.071834000002127,
+              "vectorDatabaseMs": 1.0537499999991269,
+              "endToEndMs": 16.6700000166893
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.415000021457672,
+              "databaseMs": 1.8196250000037253,
+              "vectorDatabaseMs": 0.7645409999968251,
+              "endToEndMs": 13.685000002384186
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "bm25",
+                "metrics",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "bm25",
+                "collections",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.819999992847443,
+              "databaseMs": 2.189750000005006,
+              "vectorDatabaseMs": 1.2523749999963911,
+              "endToEndMs": 14.4549999833107
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "budget",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "hnsw"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 6.685000002384186,
+              "databaseMs": 2.5147089999954915,
+              "vectorDatabaseMs": 0.9011670000036247,
+              "endToEndMs": 15.120000004768372
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "durability",
+                "cache",
+                "batch"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "durability",
+                "batch"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.009999990463257,
+              "databaseMs": 2.545665999998164,
+              "vectorDatabaseMs": 0.8482920000024023,
+              "endToEndMs": 14.444999992847443
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "refresh"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.759999990463257,
+              "databaseMs": 2.425083000001905,
+              "vectorDatabaseMs": 0.9089170000006561,
+              "endToEndMs": 14.034999966621399
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "durability",
+                "retry"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.175000011920929,
+              "databaseMs": 1.8875829999960843,
+              "vectorDatabaseMs": 1.273416999996698,
+              "endToEndMs": 13.305000007152557
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "rerank",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.439999997615814,
+              "databaseMs": 2.0805840000030003,
+              "vectorDatabaseMs": 0.9074589999945601,
+              "endToEndMs": 14.155000030994415
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "hybrid",
+                "budget",
+                "metrics"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "metrics",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.379999995231628,
+              "databaseMs": 2.0156669999996666,
+              "vectorDatabaseMs": 1.1682500000024447,
+              "endToEndMs": 13.724999964237213
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.985000014305115,
+              "databaseMs": 2.1647500000035507,
+              "vectorDatabaseMs": 0.9653340000004391,
+              "endToEndMs": 16.094999969005585
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 7.564999997615814,
+              "databaseMs": 2.141749999995227,
+              "vectorDatabaseMs": 1.2621670000007725,
+              "endToEndMs": 16.569999992847443
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "rerank",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "wal",
+                "cache",
+                "gpu"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 7.300000011920929,
+              "databaseMs": 2.728957999999693,
+              "vectorDatabaseMs": 0.9930000000022119,
+              "endToEndMs": 18.524999976158142
+            }
+          ]
+        },
+        {
+          "runtime": {
+            "backend": "wasm",
+            "dtype": "fp32",
+            "reason": "手动选择 WASM，用于降级验证或基线测试",
+            "threads": 4,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 484.5400000810623,
+          "writeMs": 30.25487499999872,
+          "refreshMs": 704.7919580000016,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 4.894999980926514,
+              "databaseMs": 3.8314160000008997,
+              "vectorDatabaseMs": 0.9674579999991693,
+              "endToEndMs": 20.40499997138977
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.4049999713897705,
+              "databaseMs": 2.431250000001455,
+              "vectorDatabaseMs": 0.8850000000020373,
+              "endToEndMs": 14.349999964237213
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "bm25",
+                "metrics",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "bm25",
+                "collections",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.730000019073486,
+              "databaseMs": 1.752333999997063,
+              "vectorDatabaseMs": 0.9931670000005397,
+              "endToEndMs": 12.449999988079071
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "budget",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "hnsw"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 6.055000007152557,
+              "databaseMs": 2.1739589999997406,
+              "vectorDatabaseMs": 0.9326670000009472,
+              "endToEndMs": 14.445000052452087
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "durability",
+                "cache",
+                "batch"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "durability",
+                "batch"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.160000026226044,
+              "databaseMs": 2.537499999998545,
+              "vectorDatabaseMs": 0.9568749999962165,
+              "endToEndMs": 15.959999978542328
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "refresh"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.450000047683716,
+              "databaseMs": 2.158500000005006,
+              "vectorDatabaseMs": 0.8562909999964177,
+              "endToEndMs": 12.894999980926514
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "durability",
+                "retry"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.884999990463257,
+              "databaseMs": 1.8295839999991586,
+              "vectorDatabaseMs": 0.9047910000008414,
+              "endToEndMs": 13.364999949932098
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "rerank",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 7.745000004768372,
+              "databaseMs": 2.8783330000005662,
+              "vectorDatabaseMs": 1.006083000000217,
+              "endToEndMs": 19.655000030994415
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "hybrid",
+                "budget",
+                "metrics"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "metrics",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.074999988079071,
+              "databaseMs": 2.0256250000020373,
+              "vectorDatabaseMs": 1.1015000000043074,
+              "endToEndMs": 14.550000011920929
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.930000007152557,
+              "databaseMs": 2.169916999999259,
+              "vectorDatabaseMs": 1.3030830000061542,
+              "endToEndMs": 14.240000009536743
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 7.7700000405311584,
+              "databaseMs": 2.0735419999982696,
+              "vectorDatabaseMs": 1.3182919999962905,
+              "endToEndMs": 14.840000033378601
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "rerank",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "wal",
+                "cache",
+                "gpu"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.230000019073486,
+              "databaseMs": 1.9422919999997248,
+              "vectorDatabaseMs": 0.9956250000032014,
+              "endToEndMs": 13.839999973773956
+            }
+          ]
+        }
+      ],
+      "initialLoad": {
+        "backend": "wasm",
+        "dtype": "fp32",
+        "reason": "手动选择 WASM，用于降级验证或基线测试",
+        "threads": 4,
+        "loadMs": 817.5400000214577,
+        "reused": false
+      },
+      "firstInferenceMs": 12.339999973773956,
+      "summary": {
+        "runtime": {
+          "backend": "wasm",
+          "dtype": "fp32",
+          "reason": "手动选择 WASM，用于降级验证或基线测试",
+          "threads": 4,
+          "loadMs": 0,
+          "reused": true
+        },
+        "documentEmbeddingMedianMs": 623.3600000143051,
+        "writeMedianMs": 85.02587499999936,
+        "refreshMedianMs": 514.1477500000037,
+        "queryEmbeddingMedianMs": 6.362499982118607,
+        "databaseMedianMs": 2.1719379999995,
+        "endToEndMedianMs": 15.222499996423721,
+        "recallAt5": 0.9583333333333334,
+        "ndcgAt5": 0.8995606240880468,
+        "vectorRecallAt5": 0.9583333333333334,
+        "vectorNdcgAt5": 0.9005477996985607
+      }
+    },
+    {
+      "label": "int8_wasm_batch1",
+      "settings": {
+        "backend": "wasm",
+        "dtype": "q8"
+      },
+      "batchSize": 1,
+      "collection": "bench_mwajnvm4_1",
+      "repetitions": [
+        {
+          "runtime": {
+            "backend": "wasm",
+            "dtype": "q8",
+            "reason": "手动选择 WASM，用于降级验证或基线测试",
+            "threads": 4,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 507.35999995470047,
+          "writeMs": 38.69220900000073,
+          "refreshMs": 606.3467080000046,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 5.835000038146973,
+              "databaseMs": 9.178749999999127,
+              "vectorDatabaseMs": 2.5146659999954863,
+              "endToEndMs": 22.730000019073486
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 7.659999966621399,
+              "databaseMs": 2.8255839999983436,
+              "vectorDatabaseMs": 0.7551249999960419,
+              "endToEndMs": 17.5900000333786
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "metrics",
+                "bm25",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "collections",
+                "bm25",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.1700000166893005,
+              "databaseMs": 1.8254579999993439,
+              "vectorDatabaseMs": 0.7228340000001481,
+              "endToEndMs": 15.554999947547913
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "cosine",
+                "budget"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 6.819999992847443,
+              "databaseMs": 1.6008749999964493,
+              "vectorDatabaseMs": 0.7765829999989364,
+              "endToEndMs": 14.469999969005585
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "cache",
+                "batch",
+                "durability"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "batch",
+                "durability"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 7.044999957084656,
+              "databaseMs": 1.7217500000042492,
+              "vectorDatabaseMs": 0.8442080000022543,
+              "endToEndMs": 14.455000042915344
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "cache"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.379999995231628,
+              "databaseMs": 1.7057919999933802,
+              "vectorDatabaseMs": 0.941541000000143,
+              "endToEndMs": 12.230000019073486
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "metrics",
+                "durability"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.444999992847443,
+              "databaseMs": 1.5496669999993173,
+              "vectorDatabaseMs": 0.7631669999973383,
+              "endToEndMs": 12.814999997615814
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "hybrid",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.26500004529953,
+              "databaseMs": 1.8112079999991693,
+              "vectorDatabaseMs": 1.1422079999974812,
+              "endToEndMs": 13.100000023841858
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "budget",
+                "withdraw",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "collections",
+                "metrics"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.924999952316284,
+              "databaseMs": 1.8498749999998836,
+              "vectorDatabaseMs": 0.8215839999975287,
+              "endToEndMs": 13.549999952316284
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "refresh"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.350000023841858,
+              "databaseMs": 1.9077090000064345,
+              "vectorDatabaseMs": 0.8142919999954756,
+              "endToEndMs": 13.574999988079071
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 6.425000011920929,
+              "databaseMs": 1.735500000002503,
+              "vectorDatabaseMs": 0.7072500000067521,
+              "endToEndMs": 13.245000004768372
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "retry",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "wal",
+                "cache",
+                "quant"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.4049999713897705,
+              "databaseMs": 1.6692909999983385,
+              "vectorDatabaseMs": 0.646374999996624,
+              "endToEndMs": 12.905000030994415
+            }
+          ]
+        },
+        {
+          "runtime": {
+            "backend": "wasm",
+            "dtype": "q8",
+            "reason": "手动选择 WASM，用于降级验证或基线测试",
+            "threads": 4,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 458.3599998950958,
+          "writeMs": 59.4945000000007,
+          "refreshMs": 709.4015829999989,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 5.675000011920929,
+              "databaseMs": 2.0249169999951846,
+              "vectorDatabaseMs": 0.8014169999951264,
+              "endToEndMs": 14.4549999833107
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.5950000286102295,
+              "databaseMs": 1.7782500000030268,
+              "vectorDatabaseMs": 0.659166000004916,
+              "endToEndMs": 15.284999966621399
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "metrics",
+                "bm25",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "collections",
+                "bm25",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.709999978542328,
+              "databaseMs": 1.960958000003302,
+              "vectorDatabaseMs": 0.7100419999987935,
+              "endToEndMs": 13.364999949932098
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "cosine",
+                "budget"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 6.4700000286102295,
+              "databaseMs": 2.235999999997148,
+              "vectorDatabaseMs": 0.7619159999958356,
+              "endToEndMs": 13.639999985694885
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "cache",
+                "batch",
+                "durability"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "batch",
+                "durability"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.365000009536743,
+              "databaseMs": 1.8696659999986878,
+              "vectorDatabaseMs": 0.6335000000035507,
+              "endToEndMs": 12.740000009536743
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "cache"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.810000002384186,
+              "databaseMs": 1.6162919999987935,
+              "vectorDatabaseMs": 0.7139999999999418,
+              "endToEndMs": 10.894999980926514
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "metrics",
+                "durability"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.169999957084656,
+              "databaseMs": 1.3903750000026776,
+              "vectorDatabaseMs": 0.7672089999978198,
+              "endToEndMs": 10.784999966621399
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "hybrid",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.384999990463257,
+              "databaseMs": 1.8234169999996084,
+              "vectorDatabaseMs": 0.7068750000034925,
+              "endToEndMs": 12.384999990463257
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "budget",
+                "withdraw",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "collections",
+                "metrics"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.2200000286102295,
+              "databaseMs": 1.5699170000007143,
+              "vectorDatabaseMs": 0.8767909999951371,
+              "endToEndMs": 11.165000021457672
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "refresh"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.915000021457672,
+              "databaseMs": 1.4611250000016298,
+              "vectorDatabaseMs": 0.6542919999992591,
+              "endToEndMs": 11.5450000166893
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 5.855000019073486,
+              "databaseMs": 1.4886250000054133,
+              "vectorDatabaseMs": 0.7782090000036987,
+              "endToEndMs": 11.090000033378601
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "retry",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "wal",
+                "cache",
+                "quant"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.629999995231628,
+              "databaseMs": 1.4392920000027516,
+              "vectorDatabaseMs": 0.6806670000005397,
+              "endToEndMs": 10.655000030994415
+            }
+          ]
+        },
+        {
+          "runtime": {
+            "backend": "wasm",
+            "dtype": "q8",
+            "reason": "手动选择 WASM，用于降级验证或基线测试",
+            "threads": 4,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 407.03500002622604,
+          "writeMs": 36.186791000000085,
+          "refreshMs": 506.02666699999827,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 5.495000004768372,
+              "databaseMs": 1.6723329999949783,
+              "vectorDatabaseMs": 0.6377910000010161,
+              "endToEndMs": 13.925000011920929
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.600000023841858,
+              "databaseMs": 1.606208000004699,
+              "vectorDatabaseMs": 0.695292000003974,
+              "endToEndMs": 12.850000023841858
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "metrics",
+                "bm25",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "collections",
+                "bm25",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.39000004529953,
+              "databaseMs": 1.6627089999965392,
+              "vectorDatabaseMs": 0.695917000004556,
+              "endToEndMs": 11.875
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "cosine",
+                "budget"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 6.084999978542328,
+              "databaseMs": 2.22099999999773,
+              "vectorDatabaseMs": 0.686915999998746,
+              "endToEndMs": 12.9549999833107
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "cache",
+                "batch",
+                "durability"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "batch",
+                "durability"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.3299999833106995,
+              "databaseMs": 2.011958000002778,
+              "vectorDatabaseMs": 0.7310839999991003,
+              "endToEndMs": 11.935000002384186
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "cache"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.0299999713897705,
+              "databaseMs": 1.499708000003011,
+              "vectorDatabaseMs": 0.6879999999946449,
+              "endToEndMs": 11.214999973773956
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "metrics",
+                "durability"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.334999978542328,
+              "databaseMs": 1.52833400000236,
+              "vectorDatabaseMs": 0.7406249999985448,
+              "endToEndMs": 11.685000002384186
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "hybrid",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.120000004768372,
+              "databaseMs": 1.6842079999987618,
+              "vectorDatabaseMs": 0.790499999995518,
+              "endToEndMs": 11.324999988079071
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "budget",
+                "withdraw",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "collections",
+                "metrics"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.245000004768372,
+              "databaseMs": 1.5827080000017304,
+              "vectorDatabaseMs": 0.6913330000024871,
+              "endToEndMs": 11.455000042915344
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "refresh"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.974999964237213,
+              "databaseMs": 1.6040829999983544,
+              "vectorDatabaseMs": 0.7183329999970738,
+              "endToEndMs": 12.15499997138977
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 6.050000011920929,
+              "databaseMs": 1.5997090000018943,
+              "vectorDatabaseMs": 0.6947920000020531,
+              "endToEndMs": 12.010000050067902
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "retry",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "wal",
+                "cache",
+                "quant"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.785000026226044,
+              "databaseMs": 1.5054170000003069,
+              "vectorDatabaseMs": 0.6997080000001006,
+              "endToEndMs": 11.495000004768372
+            }
+          ]
+        }
+      ],
+      "initialLoad": {
+        "backend": "wasm",
+        "dtype": "q8",
+        "reason": "手动选择 WASM，用于降级验证或基线测试",
+        "threads": 4,
+        "loadMs": 246.74500000476837,
+        "reused": false
+      },
+      "firstInferenceMs": 15.290000021457672,
+      "summary": {
+        "runtime": {
+          "backend": "wasm",
+          "dtype": "q8",
+          "reason": "手动选择 WASM，用于降级验证或基线测试",
+          "threads": 4,
+          "loadMs": 0,
+          "reused": true
+        },
+        "documentEmbeddingMedianMs": 458.3599998950958,
+        "writeMedianMs": 38.69220900000073,
+        "refreshMedianMs": 606.3467080000046,
+        "queryEmbeddingMedianMs": 5.885000020265579,
+        "databaseMedianMs": 1.67827049999687,
+        "endToEndMedianMs": 12.777500003576279,
+        "recallAt5": 0.9583333333333334,
+        "ndcgAt5": 0.8995606240880468,
+        "vectorRecallAt5": 0.9583333333333334,
+        "vectorNdcgAt5": 0.9005477996985607
+      }
+    },
+    {
+      "label": "int8_wasm_batch4",
+      "settings": {
+        "backend": "wasm",
+        "dtype": "q8"
+      },
+      "batchSize": 4,
+      "collection": "bench_mwajnvm4_2",
+      "repetitions": [
+        {
+          "runtime": {
+            "backend": "wasm",
+            "dtype": "q8",
+            "reason": "手动选择 WASM，用于降级验证或基线测试",
+            "threads": 4,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 344.67999988794327,
+          "writeMs": 35.91350000000239,
+          "refreshMs": 607.0192080000052,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 4.785000026226044,
+              "databaseMs": 6.6875,
+              "vectorDatabaseMs": 1.8508749999964493,
+              "endToEndMs": 16.930000007152557
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.439999997615814,
+              "databaseMs": 1.6386669999992591,
+              "vectorDatabaseMs": 0.6397090000027674,
+              "endToEndMs": 13.735000014305115
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "metrics",
+                "bm25",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "collections",
+                "bm25",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.050000011920929,
+              "databaseMs": 1.6840839999931632,
+              "vectorDatabaseMs": 0.6737920000014128,
+              "endToEndMs": 13.5450000166893
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "budget",
+                "cosine"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 5.989999949932098,
+              "databaseMs": 1.6016250000029686,
+              "vectorDatabaseMs": 0.6422500000044238,
+              "endToEndMs": 12.630000054836273
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "cache",
+                "batch",
+                "durability"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "batch",
+                "durability"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.060000002384186,
+              "databaseMs": 1.627541999994719,
+              "vectorDatabaseMs": 0.6737910000010743,
+              "endToEndMs": 12.849999964237213
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "refresh"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.350000023841858,
+              "databaseMs": 1.5838329999969574,
+              "vectorDatabaseMs": 0.6432500000009895,
+              "endToEndMs": 10.925000011920929
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "durability",
+                "metrics"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.930000007152557,
+              "databaseMs": 1.4217919999937294,
+              "vectorDatabaseMs": 0.6869999999980791,
+              "endToEndMs": 11.64000004529953
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "budget"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "rerank",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.939999997615814,
+              "databaseMs": 1.655708999998751,
+              "vectorDatabaseMs": 0.6454589999993914,
+              "endToEndMs": 11.27999997138977
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "hybrid",
+                "budget",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "metrics",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.175000011920929,
+              "databaseMs": 1.5493750000023283,
+              "vectorDatabaseMs": 0.790832999999111,
+              "endToEndMs": 11.349999964237213
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "refresh"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 6.410000026226044,
+              "databaseMs": 1.5490419999987353,
+              "vectorDatabaseMs": 0.6520420000015292,
+              "endToEndMs": 12.895000040531158
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 5.799999952316284,
+              "databaseMs": 1.6407909999979893,
+              "vectorDatabaseMs": 0.6810830000031274,
+              "endToEndMs": 12.070000052452087
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "hnsw",
+                "precision"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "cache",
+                "wal",
+                "gpu"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.490000009536743,
+              "databaseMs": 1.4479999999966822,
+              "vectorDatabaseMs": 0.6323749999937718,
+              "endToEndMs": 11.394999980926514
+            }
+          ]
+        },
+        {
+          "runtime": {
+            "backend": "wasm",
+            "dtype": "q8",
+            "reason": "手动选择 WASM，用于降级验证或基线测试",
+            "threads": 4,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 289.0600000023842,
+          "writeMs": 21.59695799999463,
+          "refreshMs": 707.6503340000054,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 8.169999957084656,
+              "databaseMs": 1.983165999998164,
+              "vectorDatabaseMs": 0.918415999993158,
+              "endToEndMs": 20.7950000166893
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.384999990463257,
+              "databaseMs": 1.2006250000049477,
+              "vectorDatabaseMs": 0.5718329999945126,
+              "endToEndMs": 9.915000021457672
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "metrics",
+                "bm25",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "collections",
+                "bm25",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.219999969005585,
+              "databaseMs": 1.2358750000057626,
+              "vectorDatabaseMs": 0.6493749999935972,
+              "endToEndMs": 10.149999976158142
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "budget",
+                "cosine"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 5.089999973773956,
+              "databaseMs": 1.3317079999978887,
+              "vectorDatabaseMs": 0.6319159999984549,
+              "endToEndMs": 10.254999995231628
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "cache",
+                "batch",
+                "durability"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "batch",
+                "durability"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.120000004768372,
+              "databaseMs": 1.6200840000019525,
+              "vectorDatabaseMs": 0.6165409999957774,
+              "endToEndMs": 10.400000035762787
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "refresh"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.560000002384186,
+              "databaseMs": 1.150415999996767,
+              "vectorDatabaseMs": 0.8072920000049635,
+              "endToEndMs": 9.919999957084656
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "durability",
+                "metrics"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.419999957084656,
+              "databaseMs": 1.1115829999980633,
+              "vectorDatabaseMs": 0.6945409999971162,
+              "endToEndMs": 8.534999966621399
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "budget"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "rerank",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.5950000286102295,
+              "databaseMs": 1.2183330000043497,
+              "vectorDatabaseMs": 0.5692080000007991,
+              "endToEndMs": 9.995000004768372
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "hybrid",
+                "budget",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "metrics",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.3299999833106995,
+              "databaseMs": 1.5541660000017146,
+              "vectorDatabaseMs": 0.6194590000013704,
+              "endToEndMs": 9.319999992847443
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "refresh"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.950000047683716,
+              "databaseMs": 1.1875829999989946,
+              "vectorDatabaseMs": 0.7008750000022701,
+              "endToEndMs": 9.485000014305115
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 4.980000019073486,
+              "databaseMs": 1.280333000002429,
+              "vectorDatabaseMs": 0.6091249999954016,
+              "endToEndMs": 9.775000035762787
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "hnsw",
+                "precision"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "cache",
+                "wal",
+                "gpu"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.219999969005585,
+              "databaseMs": 1.1922090000007302,
+              "vectorDatabaseMs": 0.6273329999967245,
+              "endToEndMs": 9.724999964237213
+            }
+          ]
+        },
+        {
+          "runtime": {
+            "backend": "wasm",
+            "dtype": "q8",
+            "reason": "手动选择 WASM，用于降级验证或基线测试",
+            "threads": 4,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 255.42500001192093,
+          "writeMs": 17.485124999999243,
+          "refreshMs": 708.7673340000038,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 8.22000002861023,
+              "databaseMs": 1.5857079999987036,
+              "vectorDatabaseMs": 0.6191249999974389,
+              "endToEndMs": 20.5450000166893
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.4200000166893005,
+              "databaseMs": 1.5892909999965923,
+              "vectorDatabaseMs": 0.604749999998603,
+              "endToEndMs": 11.120000004768372
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "metrics",
+                "bm25",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "collections",
+                "bm25",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.495000004768372,
+              "databaseMs": 1.2195409999985714,
+              "vectorDatabaseMs": 0.9266250000000582,
+              "endToEndMs": 8.995000004768372
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "budget",
+                "cosine"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 5.129999995231628,
+              "databaseMs": 1.2057910000003176,
+              "vectorDatabaseMs": 0.6430839999957243,
+              "endToEndMs": 9.639999985694885
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "cache",
+                "batch",
+                "durability"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "batch",
+                "durability"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.519999980926514,
+              "databaseMs": 1.252874999998312,
+              "vectorDatabaseMs": 0.5791250000038417,
+              "endToEndMs": 10.334999978542328
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "refresh"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.899999976158142,
+              "databaseMs": 1.1181660000002012,
+              "vectorDatabaseMs": 0.6399170000004233,
+              "endToEndMs": 9.339999973773956
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "durability",
+                "metrics"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.230000019073486,
+              "databaseMs": 1.419499999996333,
+              "vectorDatabaseMs": 0.6178329999966081,
+              "endToEndMs": 9.334999978542328
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "budget"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "rerank",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.894999980926514,
+              "databaseMs": 1.2949169999992591,
+              "vectorDatabaseMs": 0.7966249999954016,
+              "endToEndMs": 9.460000038146973
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "hybrid",
+                "budget",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "metrics",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.444999992847443,
+              "databaseMs": 1.1537499999976717,
+              "vectorDatabaseMs": 0.6029169999965234,
+              "endToEndMs": 8.865000009536743
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "refresh"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 5.7950000166893005,
+              "databaseMs": 1.237874999998894,
+              "vectorDatabaseMs": 0.6405000000013388,
+              "endToEndMs": 10.715000033378601
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 5.094999969005585,
+              "databaseMs": 1.2512500000011642,
+              "vectorDatabaseMs": 0.5674999999973807,
+              "endToEndMs": 10.399999976158142
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "hnsw",
+                "precision"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "cache",
+                "wal",
+                "gpu"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 4.634999990463257,
+              "databaseMs": 1.1188750000001164,
+              "vectorDatabaseMs": 0.627874999998312,
+              "endToEndMs": 9.014999985694885
+            }
+          ]
+        }
+      ],
+      "initialLoad": {
+        "backend": "wasm",
+        "dtype": "q8",
+        "reason": "手动选择 WASM，用于降级验证或基线测试",
+        "threads": 4,
+        "loadMs": 0,
+        "reused": true
+      },
+      "firstInferenceMs": 5.6450000405311584,
+      "summary": {
+        "runtime": {
+          "backend": "wasm",
+          "dtype": "q8",
+          "reason": "手动选择 WASM，用于降级验证或基线测试",
+          "threads": 4,
+          "loadMs": 0,
+          "reused": true
+        },
+        "documentEmbeddingMedianMs": 289.0600000023842,
+        "writeMedianMs": 21.59695799999463,
+        "refreshMedianMs": 707.6503340000054,
+        "queryEmbeddingMedianMs": 5.152500003576279,
+        "databaseMedianMs": 1.3756039999971108,
+        "endToEndMedianMs": 10.367499977350235,
+        "recallAt5": 0.9583333333333334,
+        "ndcgAt5": 0.8995606240880468,
+        "vectorRecallAt5": 0.9583333333333334,
+        "vectorNdcgAt5": 0.9005477996985607
+      }
+    },
+    {
+      "label": "auto_gpu_fp16_batch4",
+      "settings": {
+        "backend": "auto"
+      },
+      "batchSize": 4,
+      "collection": "bench_mwajnvm4_3",
+      "repetitions": [
+        {
+          "runtime": {
+            "backend": "webgpu",
+            "dtype": "fp16",
+            "reason": "",
+            "threads": null,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 112.98000001907349,
+          "writeMs": 25.167874999999185,
+          "refreshMs": 406.29054200000246,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 16.87999999523163,
+              "databaseMs": 7.097416999997222,
+              "vectorDatabaseMs": 1.8346660000024713,
+              "endToEndMs": 34.77999997138977
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 15.834999978542328,
+              "databaseMs": 1.4579159999993863,
+              "vectorDatabaseMs": 0.6263749999998254,
+              "endToEndMs": 22.679999947547913
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "bm25",
+                "metrics",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "bm25",
+                "collections",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 14.370000004768372,
+              "databaseMs": 1.2957080000051064,
+              "vectorDatabaseMs": 0.6337500000008731,
+              "endToEndMs": 19.974999964237213
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "budget",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "hnsw"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 13.980000019073486,
+              "databaseMs": 1.4263749999954598,
+              "vectorDatabaseMs": 0.623875000004773,
+              "endToEndMs": 19.50499999523163
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "durability",
+                "cache",
+                "batch"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "durability",
+                "batch"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.254999995231628,
+              "databaseMs": 1.3007920000018203,
+              "vectorDatabaseMs": 0.661999999996624,
+              "endToEndMs": 18.439999997615814
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "refresh"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.324999988079071,
+              "databaseMs": 1.1888749999998254,
+              "vectorDatabaseMs": 0.6136670000050799,
+              "endToEndMs": 18.674999952316284
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "durability",
+                "retry"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.480000019073486,
+              "databaseMs": 1.2655000000013388,
+              "vectorDatabaseMs": 0.6994579999955022,
+              "endToEndMs": 19.350000023841858
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "rerank",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.644999980926514,
+              "databaseMs": 1.3995840000061435,
+              "vectorDatabaseMs": 0.6242080000010901,
+              "endToEndMs": 19.914999961853027
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "hybrid",
+                "budget",
+                "metrics"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "metrics",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.685000002384186,
+              "databaseMs": 1.3365840000042226,
+              "vectorDatabaseMs": 0.673040999994555,
+              "endToEndMs": 19.844999969005585
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.589999973773956,
+              "databaseMs": 1.3250410000036936,
+              "vectorDatabaseMs": 0.6540840000016033,
+              "endToEndMs": 19.6599999666214
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 12.900000035762787,
+              "databaseMs": 1.4158339999994496,
+              "vectorDatabaseMs": 0.6508750000066357,
+              "endToEndMs": 19.610000014305115
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "rerank",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "wal",
+                "cache",
+                "gpu"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.620000004768372,
+              "databaseMs": 1.338292000000365,
+              "vectorDatabaseMs": 0.6290000000008149,
+              "endToEndMs": 19.665000021457672
+            }
+          ]
+        },
+        {
+          "runtime": {
+            "backend": "webgpu",
+            "dtype": "fp16",
+            "reason": "",
+            "threads": null,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 116.53999984264374,
+          "writeMs": 19.28545799999847,
+          "refreshMs": 607.9749590000065,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 16.694999992847443,
+              "databaseMs": 1.9043329999985872,
+              "vectorDatabaseMs": 0.6839170000021113,
+              "endToEndMs": 29.22000002861023
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 14.9549999833107,
+              "databaseMs": 1.259250000002794,
+              "vectorDatabaseMs": 0.6000409999978729,
+              "endToEndMs": 20.1599999666214
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "bm25",
+                "metrics",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "bm25",
+                "collections",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 12.655000030994415,
+              "databaseMs": 1.283000000003085,
+              "vectorDatabaseMs": 0.6723749999946449,
+              "endToEndMs": 17.7950000166893
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "budget",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "hnsw"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 12.52999997138977,
+              "databaseMs": 1.285541999997804,
+              "vectorDatabaseMs": 0.6361669999969308,
+              "endToEndMs": 18.194999992847443
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "durability",
+                "cache",
+                "batch"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "durability",
+                "batch"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.995000004768372,
+              "databaseMs": 1.361708999997063,
+              "vectorDatabaseMs": 0.5938749999986612,
+              "endToEndMs": 19.64500004053116
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "refresh"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.724999964237213,
+              "databaseMs": 1.3626660000008997,
+              "vectorDatabaseMs": 0.6523339999985183,
+              "endToEndMs": 21.305000007152557
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "durability",
+                "retry"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.575000047683716,
+              "databaseMs": 1.276583999999275,
+              "vectorDatabaseMs": 0.6258329999982379,
+              "endToEndMs": 19.214999973773956
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "rerank",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 12.759999990463257,
+              "databaseMs": 1.3724999999976717,
+              "vectorDatabaseMs": 0.613416000000143,
+              "endToEndMs": 18.35999995470047
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "hybrid",
+                "budget",
+                "metrics"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "metrics",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 8.949999988079071,
+              "databaseMs": 1.275707999993756,
+              "vectorDatabaseMs": 0.6905000000042492,
+              "endToEndMs": 14.495000004768372
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 8.794999957084656,
+              "databaseMs": 1.828416999996989,
+              "vectorDatabaseMs": 0.6581670000014128,
+              "endToEndMs": 14.860000014305115
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 8.649999976158142,
+              "databaseMs": 1.4334579999995185,
+              "vectorDatabaseMs": 0.6380409999983385,
+              "endToEndMs": 14.975000023841858
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "rerank",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "wal",
+                "cache",
+                "gpu"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 9.319999992847443,
+              "databaseMs": 1.3519579999992857,
+              "vectorDatabaseMs": 0.6297080000003916,
+              "endToEndMs": 15.259999990463257
+            }
+          ]
+        },
+        {
+          "runtime": {
+            "backend": "webgpu",
+            "dtype": "fp16",
+            "reason": "",
+            "threads": null,
+            "loadMs": 0,
+            "reused": true
+          },
+          "embeddingMs": 71.74499988555908,
+          "writeMs": 16.253791999995883,
+          "refreshMs": 607.9279590000006,
+          "count": 24,
+          "queries": [
+            {
+              "text": "How can committed transactions survive a sudden database crash?",
+              "relevant": [
+                "wal",
+                "durability"
+              ],
+              "ids": [
+                "wal",
+                "isolation",
+                "durability",
+                "withdraw",
+                "cache"
+              ],
+              "vectorIds": [
+                "wal",
+                "isolation",
+                "durability",
+                "retry",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.9197207891481876
+              },
+              "queryEmbeddingMs": 16.599999964237213,
+              "databaseMs": 2.4076249999998254,
+              "vectorDatabaseMs": 0.760082999993756,
+              "endToEndMs": 27.819999992847443
+            },
+            {
+              "text": "How do I speed up nearest neighbor search over many embeddings?",
+              "relevant": [
+                "hnsw"
+              ],
+              "ids": [
+                "hnsw",
+                "hybrid",
+                "quant",
+                "collections",
+                "withdraw"
+              ],
+              "vectorIds": [
+                "hnsw",
+                "hybrid",
+                "batch",
+                "cosine",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 15.15499997138977,
+              "databaseMs": 1.6886669999948936,
+              "vectorDatabaseMs": 0.6294170000037411,
+              "endToEndMs": 22.100000023841858
+            },
+            {
+              "text": "Combine keyword and semantic search results in one database query",
+              "relevant": [
+                "hybrid"
+              ],
+              "ids": [
+                "hybrid",
+                "rerank",
+                "bm25",
+                "metrics",
+                "collections"
+              ],
+              "vectorIds": [
+                "hybrid",
+                "bm25",
+                "collections",
+                "metrics",
+                "rerank"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 13.194999992847443,
+              "databaseMs": 1.2674580000020796,
+              "vectorDatabaseMs": 0.6235000000015134,
+              "endToEndMs": 18.5799999833107
+            },
+            {
+              "text": "How do I reduce the download size of my embedding model?",
+              "relevant": [
+                "quant",
+                "precision"
+              ],
+              "ids": [
+                "quant",
+                "cache",
+                "batch",
+                "budget",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "cache",
+                "quant",
+                "batch",
+                "unicode",
+                "hnsw"
+              ],
+              "hybrid": {
+                "recall": 0.5,
+                "ndcg": 0.6131471927654584
+              },
+              "vector": {
+                "recall": 0.5,
+                "ndcg": 0.38685280723454163
+              },
+              "queryEmbeddingMs": 12.98499995470047,
+              "databaseMs": 1.4116250000006403,
+              "vectorDatabaseMs": 0.6096249999973224,
+              "endToEndMs": 18.855000019073486
+            },
+            {
+              "text": "What should local browser inference use when there is no graphics adapter?",
+              "relevant": [
+                "gpu"
+              ],
+              "ids": [
+                "gpu",
+                "secrets",
+                "durability",
+                "cache",
+                "batch"
+              ],
+              "vectorIds": [
+                "gpu",
+                "cache",
+                "secrets",
+                "durability",
+                "batch"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 12.925000011920929,
+              "databaseMs": 1.410042000003159,
+              "vectorDatabaseMs": 0.6269580000007409,
+              "endToEndMs": 19.14500004053116
+            },
+            {
+              "text": "How can we process several documents per inference call?",
+              "relevant": [
+                "batch"
+              ],
+              "ids": [
+                "batch",
+                "collections",
+                "bm25",
+                "jsonl",
+                "refresh"
+              ],
+              "vectorIds": [
+                "batch",
+                "collections",
+                "budget",
+                "rerank",
+                "bm25"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 14.870000004768372,
+              "databaseMs": 1.3467499999969732,
+              "vectorDatabaseMs": 0.6252079999976559,
+              "endToEndMs": 20.644999980926514
+            },
+            {
+              "text": "Why are newly imported documents not searchable yet?",
+              "relevant": [
+                "refresh"
+              ],
+              "ids": [
+                "bm25",
+                "refresh",
+                "collections",
+                "durability",
+                "retry"
+              ],
+              "vectorIds": [
+                "refresh",
+                "collections",
+                "pdf",
+                "bm25",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 12.350000023841858,
+              "databaseMs": 1.2447089999986929,
+              "vectorDatabaseMs": 0.7091659999932745,
+              "endToEndMs": 17.884999990463257
+            },
+            {
+              "text": "How do I avoid showing results from the previously selected knowledge base?",
+              "relevant": [
+                "collections"
+              ],
+              "ids": [
+                "collections",
+                "withdraw",
+                "metrics",
+                "pdf",
+                "hybrid"
+              ],
+              "vectorIds": [
+                "collections",
+                "metrics",
+                "withdraw",
+                "rerank",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 10.495000004768372,
+              "databaseMs": 1.7002920000013546,
+              "vectorDatabaseMs": 0.714083999999275,
+              "endToEndMs": 17.194999992847443
+            },
+            {
+              "text": "How should a financial PDF search cite the exact page?",
+              "relevant": [
+                "pdf"
+              ],
+              "ids": [
+                "pdf",
+                "collections",
+                "hybrid",
+                "budget",
+                "metrics"
+              ],
+              "vectorIds": [
+                "pdf",
+                "budget",
+                "bm25",
+                "metrics",
+                "hybrid"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 9.009999990463257,
+              "databaseMs": 1.3855410000032862,
+              "vectorDatabaseMs": 0.6296670000010636,
+              "endToEndMs": 15.40499997138977
+            },
+            {
+              "text": "How can a delayed AI response avoid overwriting newer edits?",
+              "relevant": [
+                "retry"
+              ],
+              "ids": [
+                "retry",
+                "wal",
+                "withdraw",
+                "isolation",
+                "cache"
+              ],
+              "vectorIds": [
+                "retry",
+                "wal",
+                "batch",
+                "isolation",
+                "withdraw"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 9.770000040531158,
+              "databaseMs": 1.2992499999963911,
+              "vectorDatabaseMs": 0.6184579999971902,
+              "endToEndMs": 15.525000035762787
+            },
+            {
+              "text": "Which retrieval metric penalizes relevant documents appearing lower in the ranking?",
+              "relevant": [
+                "metrics"
+              ],
+              "ids": [
+                "bm25",
+                "metrics",
+                "budget",
+                "collections",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "bm25",
+                "rerank",
+                "metrics",
+                "hybrid",
+                "budget"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 0.6309297535714575
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 0.5
+              },
+              "queryEmbeddingMs": 9.269999980926514,
+              "databaseMs": 1.372957999999926,
+              "vectorDatabaseMs": 0.6164999999964493,
+              "endToEndMs": 14.9200000166893
+            },
+            {
+              "text": "Where should I store database passwords in a web application?",
+              "relevant": [
+                "secrets"
+              ],
+              "ids": [
+                "secrets",
+                "durability",
+                "wal",
+                "rerank",
+                "hnsw"
+              ],
+              "vectorIds": [
+                "secrets",
+                "durability",
+                "wal",
+                "cache",
+                "gpu"
+              ],
+              "hybrid": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "vector": {
+                "recall": 1,
+                "ndcg": 1
+              },
+              "queryEmbeddingMs": 9.480000019073486,
+              "databaseMs": 1.3021670000016456,
+              "vectorDatabaseMs": 0.6864999999961583,
+              "endToEndMs": 15.254999995231628
+            }
+          ]
+        }
+      ],
+      "initialLoad": {
+        "backend": "webgpu",
+        "dtype": "fp16",
+        "reason": "",
+        "threads": null,
+        "loadMs": 359.8349999785423,
+        "reused": false
+      },
+      "firstInferenceMs": 47.45999997854233,
+      "summary": {
+        "runtime": {
+          "backend": "webgpu",
+          "dtype": "fp16",
+          "reason": "",
+          "threads": null,
+          "loadMs": 0,
+          "reused": true
+        },
+        "documentEmbeddingMedianMs": 112.98000001907349,
+        "writeMedianMs": 19.28545799999847,
+        "refreshMedianMs": 607.9279590000006,
+        "queryEmbeddingMedianMs": 13.28999999165535,
+        "databaseMedianMs": 1.3568334999981744,
+        "endToEndMedianMs": 19.180000007152557,
+        "recallAt5": 0.9583333333333334,
+        "ndcgAt5": 0.8995606240880468,
+        "vectorRecallAt5": 0.9583333333333334,
+        "vectorNdcgAt5": 0.9005477996985607
+      }
+    }
+  ]
+}

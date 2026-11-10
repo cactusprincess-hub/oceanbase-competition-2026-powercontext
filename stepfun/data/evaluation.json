@@ -1,0 +1,43 @@
+{
+  "description": "Fixed, hand-labelled engineering knowledge corpus; English MiniLM benchmark, not a general-domain quality claim.",
+  "documents": [
+    {"id":"wal","title":"Write-ahead logging","text":"Write-ahead logging writes transaction changes to a durable log before flushing data pages. Recovery replays committed records after a database crash. fsync makes the log durable before acknowledging a commit."},
+    {"id":"isolation","title":"Transaction isolation","text":"Snapshot isolation gives each transaction a consistent view of committed data. Uncommitted changes remain invisible to other sessions. A rollback discards pending modifications."},
+    {"id":"hnsw","title":"Approximate vector indexing","text":"HNSW organizes vectors in a hierarchical navigable graph. It accelerates nearest neighbor retrieval at the cost of extra memory and approximate recall. Increasing ef_search trades latency for accuracy."},
+    {"id":"cosine","title":"Cosine similarity","text":"Cosine similarity measures the angle between embedding vectors. L2 normalization makes their dot product equal to cosine similarity. This comparison is useful for semantic text retrieval."},
+    {"id":"hybrid","title":"Hybrid retrieval","text":"Hybrid search combines lexical full-text matching with dense vector semantic retrieval inside the database. Reciprocal rank fusion combines ranked candidates without comparing incompatible raw scores."},
+    {"id":"bm25","title":"Full-text ranking","text":"BM25 ranks documents using query term frequency, document length and inverse document frequency. An inverted index maps each token to the documents containing that token."},
+    {"id":"quant","title":"INT8 model compression","text":"Dynamic INT8 quantization stores many neural network weights as eight-bit integers instead of 32-bit floats. Smaller model downloads reduce bandwidth. Compare retrieval recall against the unquantized baseline."},
+    {"id":"gpu","title":"Browser GPU inference","text":"WebGPU runs neural network computation on the user's graphics hardware. A secure context is required. If a compatible adapter is unavailable, use WebAssembly for local inference."},
+    {"id":"batch","title":"Embedding batches","text":"Embedding multiple texts in a batch amortizes inference overhead. Padding texts of different lengths consumes extra computation. Benchmark warmed-up latency separately from the first model load."},
+    {"id":"cache","title":"Model download caching","text":"Browser cache storage can reuse downloaded model weights across page visits. Cache hits avoid a second network transfer, but model session initialization still takes time. Pin model revisions to reproduce results."},
+    {"id":"refresh","title":"Incremental index refresh","text":"New documents must become visible to both vector and full-text indexes after import. Refresh the index after a complete write batch instead of after every individual document. Keep document identifiers stable on repeated imports."},
+    {"id":"collections","title":"Knowledge base separation","text":"Separate collections isolate documents belonging to different knowledge bases. Persist the selected collection and session state. Ignore stale search responses when the user switches to a different collection."},
+    {"id":"csv","title":"CSV quoted fields","text":"CSV fields containing commas or line breaks must be quoted. Double a quotation mark inside a quoted field. A robust parser preserves empty fields and distinguishes a missing value from an empty string."},
+    {"id":"jsonl","title":"JSON Lines files","text":"A JSON Lines file stores one complete JSON value per line. Stream records independently instead of loading the whole file. Report malformed input with its physical line number."},
+    {"id":"pdf","title":"PDF evidence pages","text":"Financial report retrieval should preserve the physical page number of every extracted passage. Search results need precise evidence references. The printed page label may differ from the physical PDF page index."},
+    {"id":"rerank","title":"Reranking candidates","text":"A reranker rescores a short list of retrieved passages against the user question. Preserve original document identifiers when batching rerank requests and combine returned scores in one stable global ordering."},
+    {"id":"budget","title":"Context byte budgets","text":"A retrieval context budget includes both passage text and citation metadata in UTF-8 bytes. Select relevant evidence spans that fit the budget instead of truncating every document at the beginning."},
+    {"id":"withdraw","title":"Withdrawn document visibility","text":"When a source is withdrawn, derived memories should disappear from search without losing their provenance. Restoring the same source can make the original derived memories visible again."},
+    {"id":"retry","title":"Safe background retries","text":"Asynchronous background jobs should retry transient network errors with backoff. Attach a version to each job so that a slow old response cannot overwrite a newer document version. Rolled-back writes must not enqueue work."},
+    {"id":"secrets","title":"Protecting API credentials","text":"Keep database passwords and external API keys on the local server. Never embed credentials in browser JavaScript, public source repositories or query strings. Provide an environment file example without real secrets."},
+    {"id":"unicode","title":"Unicode text boundaries","text":"JavaScript string length counts UTF-16 code units rather than UTF-8 bytes. Splitting a surrogate pair corrupts a character. Use Unicode-aware segmentation when chunking multilingual documents."},
+    {"id":"precision","title":"Float16 inference","text":"FP16 stores floating-point model weights in sixteen bits, roughly halving weight size. GPUs may accelerate half precision arithmetic. Compare numerical outputs and retrieval metrics with a float32 reference model."},
+    {"id":"durability","title":"Persistent storage","text":"Data written to a local database must remain available after the application process restarts. Mount a persistent volume for container databases. An in-memory JavaScript array is not durable storage."},
+    {"id":"metrics","title":"Recall and nDCG","text":"Recall at K is the fraction of all relevant documents present in the first K results. nDCG discounts relevant items at lower ranks and normalizes by an ideal ranking. Use a fixed query set with explicit relevance labels."}
+  ],
+  "queries": [
+    {"text":"How can committed transactions survive a sudden database crash?","relevant":["wal","durability"]},
+    {"text":"How do I speed up nearest neighbor search over many embeddings?","relevant":["hnsw"]},
+    {"text":"Combine keyword and semantic search results in one database query","relevant":["hybrid"]},
+    {"text":"How do I reduce the download size of my embedding model?","relevant":["quant","precision"]},
+    {"text":"What should local browser inference use when there is no graphics adapter?","relevant":["gpu"]},
+    {"text":"How can we process several documents per inference call?","relevant":["batch"]},
+    {"text":"Why are newly imported documents not searchable yet?","relevant":["refresh"]},
+    {"text":"How do I avoid showing results from the previously selected knowledge base?","relevant":["collections"]},
+    {"text":"How should a financial PDF search cite the exact page?","relevant":["pdf"]},
+    {"text":"How can a delayed AI response avoid overwriting newer edits?","relevant":["retry"]},
+    {"text":"Which retrieval metric penalizes relevant documents appearing lower in the ranking?","relevant":["metrics"]},
+    {"text":"Where should I store database passwords in a web application?","relevant":["secrets"]}
+  ]
+}
