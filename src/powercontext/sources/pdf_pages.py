@@ -88,7 +88,13 @@ _FINANCIAL_QUERY_EXPANSIONS = (
     (("cash flow", "cash flows"), ("consolidated statement of cash flows", "operating investing financing activities")),
     (
         ("income statement", "p&l", "profit and loss"),
-        ("consolidated statement of income", "net sales net revenue operating income operating profit"),
+        (
+            "consolidated statement of income",
+            "consolidated statements of income",
+            "consolidated statements of operations",
+            "consolidated statements of earnings",
+            "net sales net revenue operating income operating profit",
+        ),
     ),
     (("ebitda",), ("operating income operating profit depreciation amortization",)),
     (("capex", "capital expenditure", "capital expenditures"), ("purchases property plant equipment",)),
@@ -246,7 +252,7 @@ async def search_pdf_pages(
     if not hits:
         return ()
     ordered = _rank_pdf_hits(question, tuple(hits.values()), rank_scores, best_scores)
-    ordered = await _rank_neighboring_pages(memory, ordered, limit)
+    ordered = await _rank_neighboring_pages(memory, ordered, limit, question)
     # Every page projection starts with its document ID. Keep an explicitly
     # requested company's report ahead of similar statements from other
     # companies, without excluding reports when the ID is opaque.
@@ -374,9 +380,14 @@ def _financial_section_score(question: str, text: str) -> float:
     page = text.casefold()
     score = 0.0
     if any(term in query for term in ("income statement", "p&l", "profit and loss")):
-        score += 24.0 * ("statement of income" in page)
+        score += 300.0 * bool(
+            re.search(
+                r"(?:^|\n)\s*(?:consolidated\s+)?statements?\s+of\s+(?:income|operations|earnings)\b",
+                page,
+            )
+        )
     if "cash flow" in query:
-        score += 24.0 * ("statement of cash flows" in page)
+        score += 300.0 * bool(re.search(r"(?:^|\n)\s*(?:consolidated\s+)?statements?\s+of\s+cash\s+flows?\b", page))
     if any(term in query for term in ("balance sheet", "financial position")):
         score += 24.0 * ("balance sheet" in page or "statement of financial position" in page)
     if "ebitda" in query:
@@ -434,6 +445,7 @@ async def _rank_neighboring_pages(
     memory: _ScopedMemory,
     hits: tuple[MemoryHit, ...],
     limit: int,
+    question: str,
 ) -> tuple[MemoryHit, ...]:
     pool_size = min(len(hits), max(60, limit * 3))
     pool = hits[:pool_size]
@@ -463,7 +475,10 @@ async def _rank_neighboring_pages(
             for other_identity, (other_document, other_page) in locations.items()
             if other_identity != identity and other_document == document and 0 < abs(other_page - page_number) <= 2
         )
-        return (rank - 60.0 * support, rank)
+        # Neighboring-page evidence is useful for narrative references, but a
+        # titled financial statement is a stronger anchor than a note that merely
+        # repeats the phrase "statement of ...".
+        return (rank - 60.0 * support - _financial_section_score(question, hit.text), rank)
 
     reranked_pool = tuple(sorted(pool, key=score))
     return reranked_pool + hits[pool_size:]

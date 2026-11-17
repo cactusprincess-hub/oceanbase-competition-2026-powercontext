@@ -17,6 +17,7 @@ from __future__ import annotations
 import asyncio
 import io
 
+import pytest
 from pypdf import PdfWriter
 
 from powercontext.builtin.artifacts.memory import MemoryEntryInput
@@ -97,5 +98,63 @@ def test_search_distinguishes_companies_after_restart(tmp_path) -> None:
             record = await memory.get(GetMemoryEntryRequest(citation=citations[0]))
             assert record.entry.text.startswith("ASTER_HOLDINGS_2025_10K\n")
             assert record.entry.sources
+
+    asyncio.run(scenario())
+
+
+@pytest.mark.parametrize(
+    ("question", "statement", "note"),
+    [
+        (
+            "What was Aster's cash flow from operating activities in 2025 according to the cash flow statement?",
+            "CONSOLIDATED STATEMENTS OF CASH FLOWS\n2025 2024\n"
+            "Cash provided by operating activities 500 400.\n"
+            "Cash used for investing activities (20) (30). Cash used for financing activities (100) (50).",
+            "Refer to the statement of cash flows for cash flow from operating activities in 2025.",
+        ),
+        (
+            "What was Aster's net income in 2025 according to its income statement?",
+            "CONSOLIDATED STATEMENTS OF OPERATIONS\n2025 2024\n"
+            "Net sales 1000 900. Cost of sales 600 550. Operating income 300 250. Net earnings 200 180.",
+            "Refer to the statement of income for net income in 2025.",
+        ),
+    ],
+)
+def test_search_finds_plural_financial_statements_among_notes(tmp_path, question, statement, note) -> None:
+    async def scenario():
+        config = BuiltinConfig(database=SQLiteConfig(url=f"sqlite+aiosqlite:///{tmp_path / 'reports.db'}"))
+        registry = SourceDefinitionRegistry((PDF_PAGE_SOURCE_DEFINITION,))
+        async with open_builtin_runtime(config) as runtime:
+            scope = await runtime.scopes.create(
+                ScopeDraft(title="Statements and notes", summary="Synthetic annual report", idempotency_key="report")
+            )
+            await runtime.ingestion.register(manifest_for_definition(PDF_PAGE_SOURCE_DEFINITION))
+            # Exact question wording in cross-references must not crowd the actual
+            # accounting statement out of a page-retrieval result.
+            for index in range(27):
+                source = await registry.resolve(
+                    PDFPageInput(
+                        document_id="ASTER_2025_10K",
+                        document_sha256="a" * 64,
+                        page_number=index + 1,
+                        text=statement if index == 26 else f"Note {index + 1}. {note}",
+                    )
+                )
+                await runtime.ingestion.submit(
+                    SubmitSourceObservation(
+                        scope_id=scope.scope_id,
+                        observation=project_source_for_transport(registry, source),
+                    )
+                )
+        async with open_builtin_runtime(config, candidate_pipeline=_PagePipeline()) as runtime:
+            memory = runtime.memory.for_scope(scope.scope_id)
+            for _ in range(28):
+                if not (await memory.flush()).processed:
+                    break
+        async with open_builtin_runtime(config) as runtime:
+            memory = runtime.memory.for_scope(scope.scope_id)
+            citations = await search_pdf_pages(memory, question, limit=1)
+            texts = [(await memory.get(GetMemoryEntryRequest(citation=citation))).entry.text for citation in citations]
+            assert texts == [f"ASTER_2025_10K\n{statement}"]
 
     asyncio.run(scenario())
