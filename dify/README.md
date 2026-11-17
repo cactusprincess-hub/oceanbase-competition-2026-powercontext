@@ -20,7 +20,7 @@ flowchart LR
 
 ## 版本与资源
 
-- Docker Engine + Compose v2，Linux x86_64（完整验收环境）。建议 4 核、8 GB 内存、20 GB 空闲磁盘。
+- Docker Engine + Compose v2，Linux x86_64（完整验收环境）。建议 4 核、8 GB 内存、20 GB 空闲磁盘。本机无Docker的开发部分通过macOS原生seekdb验证；完整Docker与浏览器运行由Ubuntu24.04 CI实测。
 - Python 3.10+，客户端全部使用标准库。
 - Dify API / Web **1.9.1**，Sandbox **0.2.12**，Plugin Daemon **0.3.0-local**。
 - seekdb **1.4.0-100000172026082615**，镜像 digest 固定在 compose 中。
@@ -94,3 +94,5 @@ python3 tests/acceptance.py
 验收使用发布后的 Dify `/v1/workflows/run`，包含完整通关、错误密码、缺失证据、失败重开、提示、独立存档、真实 seekdb 进程重启恢复。还临时把数据库中的站台编号从04改为09：原密码失败，新密码231709成功，随后恢复初始素材，证明实际数据影响玩法。验收只操作本作品的独立部署。
 
 `results/acceptance.json` 保存实际 workflow run ID、完整故事回复、七个节点执行状态和数据库持久化快照；`results/dify-export.yml` 是真实 Dify 导出的 DSL（不含服务密钥）。CI 同时生成镜像清单。验收结果和运行链接以 `results/README.md` 为准；本地验证不等于官方得分。浏览器验收另存桌面与手机截图，并验证刷新续接。
+
+已通过的完整运行：[44006878568](https://github.com/cactusprincess-hub/oceanbase-competition-2026-powercontext/actions/runs/44006878568)，包含37次真实Dify调用、7个成功核心节点与两项真实数据库测试。

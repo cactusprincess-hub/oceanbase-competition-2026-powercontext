@@ -1,0 +1,565 @@
+{
+  "environment": {
+    "dify": "1.9.1",
+    "seekdb": "1.4.0",
+    "engine": "Dify published workflow (not a mock)"
+  },
+  "scenarios": [
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "开始",
+      "workflow_run_id": "f1312aab-d2f0-4c84-9197-7296b0404626",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "末班车驶离后，你在午夜车站醒来。失物箱里躺着回家的车票，电子锁只剩十二次行动的电量。 先试试『去站台』。\n\n地点：大厅 | 剩余行动：12 | 状态：playing | 得分：0\n证据背包：空\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 1,
+        "state": "{\"room\": \"大厅\", \"inventory\": [], \"turns\": 0, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "去站台",
+      "workflow_run_id": "ee9fdaf6-966b-4c26-9150-4212e0ac4da4",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "空荡的站台上，一只机械钟停在末班车离开的时刻。\n\n地点：站台 | 剩余行动：11 | 状态：playing | 得分：0\n证据背包：空\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 2,
+        "state": "{\"room\": \"站台\", \"inventory\": [], \"turns\": 1, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "查看",
+      "workflow_run_id": "340526fb-be40-4f32-b52d-a67b550db9f8",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【clock】站台机械钟：23:17。钟面下刻着『记录离站时刻』。\n\n地点：站台 | 剩余行动：10 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 3,
+        "state": "{\"room\": \"站台\", \"inventory\": [\"clock\"], \"turns\": 2, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "去仓库",
+      "workflow_run_id": "aaf74d2c-5dce-4649-a577-cba8715367a9",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "失物架上只剩一张旧票根，目的站已经褪色。\n\n地点：仓库 | 剩余行动：9 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 4,
+        "state": "{\"room\": \"仓库\", \"inventory\": [\"clock\"], \"turns\": 3, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "查看",
+      "workflow_run_id": "7ef100b0-8a8b-4dca-adb3-5df5dac69747",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【ticket】旧票根上保留着『站台编号：04』；票号 9852 已被划掉。\n\n地点：仓库 | 剩余行动：8 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根上保留着『站台编号：04』；票号 9852 已被划掉。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 5,
+        "state": "{\"room\": \"仓库\", \"inventory\": [\"clock\", \"ticket\"], \"turns\": 4, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "去广播室",
+      "workflow_run_id": "5df2af82-ea75-45df-b5b1-b8ea035ffdf5",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "广播控制台仍亮着微弱的绿灯。最后一条值班记录可以调阅。\n\n地点：广播室 | 剩余行动：7 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根上保留着『站台编号：04』；票号 9852 已被划掉。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 6,
+        "state": "{\"room\": \"广播室\", \"inventory\": [\"clock\", \"ticket\"], \"turns\": 5, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "查看",
+      "workflow_run_id": "5eb6d9da-dc55-48db-8808-97499541661e",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【rule】值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n\n地点：广播室 | 剩余行动：6 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根上保留着『站台编号：04』；票号 9852 已被划掉。；值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 7,
+        "state": "{\"room\": \"广播室\", \"inventory\": [\"clock\", \"ticket\", \"rule\"], \"turns\": 6, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "去大厅",
+      "workflow_run_id": "9d53acec-643d-40a1-a914-cd162ff0cddd",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "末班车驶离后，你在午夜车站醒来。失物箱里躺着回家的车票，电子锁只剩十二次行动的电量。\n\n地点：大厅 | 剩余行动：5 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根上保留着『站台编号：04』；票号 9852 已被划掉。；值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 8,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"clock\", \"ticket\", \"rule\"], \"turns\": 7, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "打开 000000",
+      "workflow_run_id": "a71d4639-b47e-439e-b53a-280057d7bb12",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "密码错误，失物箱轻轻闪了一下红灯。别把划掉的票号当成站台号。\n\n地点：大厅 | 剩余行动：4 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根上保留着『站台编号：04』；票号 9852 已被划掉。；值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 9,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"clock\", \"ticket\", \"rule\"], \"turns\": 8, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "打开 231704",
+      "workflow_run_id": "81dc4320-fed5-450b-8439-2130b9536373",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "失物箱打开了！里面是你的车票，还有一行字：『最后一班车，会等找回自己的人。』你成功回家。\n\n地点：大厅 | 剩余行动：3 | 状态：won | 得分：73\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根上保留着『站台编号：04』；票号 9852 已被划掉。；值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "won",
+        "version": 10,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"clock\", \"ticket\", \"rule\"], \"turns\": 9, \"hints\": 0, \"status\": \"won\"}"
+      }
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "command": "状态",
+      "workflow_run_id": "2eb75d70-5b08-426b-83ba-b7e9f10c92a5",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "探索四个地点，查看并收集证据，回到大厅打开失物箱。帮助、状态、背包不消耗电量。\n\n地点：大厅 | 剩余行动：3 | 状态：won | 得分：73\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根上保留着『站台编号：04』；票号 9852 已被划掉。；值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "won",
+        "version": 11,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"clock\", \"ticket\", \"rule\"], \"turns\": 9, \"hints\": 0, \"status\": \"won\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "开始",
+      "workflow_run_id": "7766cd25-5bc5-48d2-89e3-34db04ddb14f",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "末班车驶离后，你在午夜车站醒来。失物箱里躺着回家的车票，电子锁只剩十二次行动的电量。 先试试『去站台』。\n\n地点：大厅 | 剩余行动：12 | 状态：playing | 得分：0\n证据背包：空\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 1,
+        "state": "{\"room\": \"大厅\", \"inventory\": [], \"turns\": 0, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "打开 231704",
+      "workflow_run_id": "3721d831-accc-416c-8d10-953106dec114",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "锁屏提示：证据不足。请先查看机械钟、旧票根与值班记录。\n\n地点：大厅 | 剩余行动：11 | 状态：playing | 得分：0\n证据背包：空\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 2,
+        "state": "{\"room\": \"大厅\", \"inventory\": [], \"turns\": 1, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "374ddbb9-783c-4b35-9bbc-036da3734a5f",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n\n地点：大厅 | 剩余行动：10 | 状态：playing | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 3,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 2, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "424d1d90-16de-4d9f-86c5-0330df47ce46",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n\n地点：大厅 | 剩余行动：9 | 状态：playing | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 4,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 3, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "167daa55-a624-46e2-b5dc-cffa433b9b65",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n\n地点：大厅 | 剩余行动：8 | 状态：playing | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 5,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 4, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "eeb72e1d-6884-48e9-97a2-8b593b739099",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n\n地点：大厅 | 剩余行动：7 | 状态：playing | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 6,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 5, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "a529fbce-1b8d-4270-bf09-13df5f226c27",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n\n地点：大厅 | 剩余行动：6 | 状态：playing | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 7,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 6, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "cef758af-7d0c-4946-ba5a-17d8b2158846",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n\n地点：大厅 | 剩余行动：5 | 状态：playing | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 8,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 7, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "18abf5b9-e313-49c2-9506-9dbbd1afbc48",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n\n地点：大厅 | 剩余行动：4 | 状态：playing | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 9,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 8, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "4cd43698-46ea-4c62-99cb-47bce663e4c5",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n\n地点：大厅 | 剩余行动：3 | 状态：playing | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 10,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 9, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "c1cc9410-e768-445f-b522-21f9aff3e603",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n\n地点：大厅 | 剩余行动：2 | 状态：playing | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 11,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 10, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "794edab0-758a-4e68-ad4e-0bc233790b31",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n\n地点：大厅 | 剩余行动：1 | 状态：playing | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 12,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 11, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "查看",
+      "workflow_run_id": "dceb1df3-6fdf-425d-ba3e-03e4407b4ab4",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【note】潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。 电量耗尽，天亮前无法开箱。输入『重来』再试一次。\n\n地点：大厅 | 剩余行动：0 | 状态：lost | 得分：0\n证据背包：潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "lost",
+        "version": 13,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"note\"], \"turns\": 12, \"hints\": 0, \"status\": \"lost\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "重来",
+      "workflow_run_id": "c2cee2fe-42c4-40eb-a8ee-ab0d7b0ac456",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "末班车驶离后，你在午夜车站醒来。失物箱里躺着回家的车票，电子锁只剩十二次行动的电量。 先试试『去站台』。\n\n地点：大厅 | 剩余行动：12 | 状态：playing | 得分：0\n证据背包：空\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 14,
+        "state": "{\"room\": \"大厅\", \"inventory\": [], \"turns\": 0, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "什么",
+      "workflow_run_id": "fffed767-9028-4997-b6d7-1b6772efc608",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "没听懂这条指令。请使用下方选项；无效指令不消耗电量。\n\n地点：大厅 | 剩余行动：12 | 状态：playing | 得分：0\n证据背包：空\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 15,
+        "state": "{\"room\": \"大厅\", \"inventory\": [], \"turns\": 0, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "command": "提示",
+      "workflow_run_id": "7e40b16e-54f5-4715-860d-98c0a65abff5",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "试着去站台，然后『查看』。\n\n地点：大厅 | 剩余行动：11 | 状态：playing | 得分：0\n证据背包：空\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 16,
+        "state": "{\"room\": \"大厅\", \"inventory\": [], \"turns\": 1, \"hints\": 1, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "command": "开始",
+      "workflow_run_id": "2a5905ab-c1b0-4d49-ab2f-db2fd4a4f627",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "末班车驶离后，你在午夜车站醒来。失物箱里躺着回家的车票，电子锁只剩十二次行动的电量。 先试试『去站台』。\n\n地点：大厅 | 剩余行动：12 | 状态：playing | 得分：0\n证据背包：空\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 1,
+        "state": "{\"room\": \"大厅\", \"inventory\": [], \"turns\": 0, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "command": "去站台",
+      "workflow_run_id": "a4735fe3-3d98-4541-bd49-b8d253c10b67",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "空荡的站台上，一只机械钟停在末班车离开的时刻。\n\n地点：站台 | 剩余行动：11 | 状态：playing | 得分：0\n证据背包：空\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 2,
+        "state": "{\"room\": \"站台\", \"inventory\": [], \"turns\": 1, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "command": "查看",
+      "workflow_run_id": "326a86dd-9eab-44cc-b624-93274a6361e0",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【clock】站台机械钟：23:17。钟面下刻着『记录离站时刻』。\n\n地点：站台 | 剩余行动：10 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 3,
+        "state": "{\"room\": \"站台\", \"inventory\": [\"clock\"], \"turns\": 2, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "command": "去仓库",
+      "workflow_run_id": "893bc140-6957-498b-95fd-1fb383d75c8b",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "失物架上只剩一张旧票根，目的站已经褪色。\n\n地点：仓库 | 剩余行动：9 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 4,
+        "state": "{\"room\": \"仓库\", \"inventory\": [\"clock\"], \"turns\": 3, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "command": "查看",
+      "workflow_run_id": "8bec2e10-e653-48d3-a465-383e442e7a56",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【ticket】旧票根：站台编号09（验收数据变更）\n\n地点：仓库 | 剩余行动：8 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根：站台编号09（验收数据变更）\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 5,
+        "state": "{\"room\": \"仓库\", \"inventory\": [\"clock\", \"ticket\"], \"turns\": 4, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "command": "去广播室",
+      "workflow_run_id": "f03cce76-79a9-44b2-b5d9-6b17e5ff5eec",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "广播控制台仍亮着微弱的绿灯。最后一条值班记录可以调阅。\n\n地点：广播室 | 剩余行动：7 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根：站台编号09（验收数据变更）\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 6,
+        "state": "{\"room\": \"广播室\", \"inventory\": [\"clock\", \"ticket\"], \"turns\": 5, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "command": "查看",
+      "workflow_run_id": "043067ce-9f25-4741-ba1f-f7619ff476ba",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "【rule】值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n\n地点：广播室 | 剩余行动：6 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根：站台编号09（验收数据变更）；值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 7,
+        "state": "{\"room\": \"广播室\", \"inventory\": [\"clock\", \"ticket\", \"rule\"], \"turns\": 6, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "command": "去大厅",
+      "workflow_run_id": "36f97a02-5381-4250-b594-6bcbaee60f58",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "末班车驶离后，你在午夜车站醒来。失物箱里躺着回家的车票，电子锁只剩十二次行动的电量。\n\n地点：大厅 | 剩余行动：5 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根：站台编号09（验收数据变更）；值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 8,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"clock\", \"ticket\", \"rule\"], \"turns\": 7, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "command": "打开 231704",
+      "workflow_run_id": "e305ccdb-9f3b-45b8-86b3-8be17445e434",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "密码错误，失物箱轻轻闪了一下红灯。别把划掉的票号当成站台号。\n\n地点：大厅 | 剩余行动：4 | 状态：playing | 得分：0\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根：站台编号09（验收数据变更）；值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "playing",
+        "version": 9,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"clock\", \"ticket\", \"rule\"], \"turns\": 8, \"hints\": 0, \"status\": \"playing\"}"
+      }
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "command": "打开 231709",
+      "workflow_run_id": "d28ddd59-77ff-4580-9736-23c1bdeab637",
+      "status": "succeeded",
+      "outputs": {
+        "reply": "失物箱打开了！里面是你的车票，还有一行字：『最后一班车，会等找回自己的人。』你成功回家。\n\n地点：大厅 | 剩余行动：3 | 状态：won | 得分：73\n证据背包：站台机械钟：23:17。钟面下刻着『记录离站时刻』。；旧票根：站台编号09（验收数据变更）；值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来",
+        "status": "won",
+        "version": 10,
+        "state": "{\"room\": \"大厅\", \"inventory\": [\"clock\", \"ticket\", \"rule\"], \"turns\": 9, \"hints\": 0, \"status\": \"won\"}"
+      }
+    }
+  ],
+  "restart_recovered": true,
+  "database_clue_changes_outcome": true,
+  "persisted_players": [
+    {
+      "session_id": "0b86ca000efd74157dfa967ca42548df",
+      "version": 0,
+      "state_json": "{\"room\":\"大厅\",\"inventory\":[],\"turns\":0,\"hints\":0,\"status\":\"playing\"}"
+    },
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "version": 16,
+      "state_json": "{\"room\":\"大厅\",\"inventory\":[],\"turns\":1,\"hints\":1,\"status\":\"playing\"}"
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "version": 11,
+      "state_json": "{\"room\":\"大厅\",\"inventory\":[\"clock\",\"ticket\",\"rule\"],\"turns\":9,\"hints\":0,\"status\":\"won\"}"
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "version": 10,
+      "state_json": "{\"room\":\"大厅\",\"inventory\":[\"clock\",\"ticket\",\"rule\"],\"turns\":9,\"hints\":0,\"status\":\"won\"}"
+    },
+    {
+      "session_id": "602433db1a77092613f630e1a0ab09db",
+      "version": 0,
+      "state_json": "{\"room\":\"大厅\",\"inventory\":[],\"turns\":0,\"hints\":0,\"status\":\"playing\"}"
+    },
+    {
+      "session_id": "95eef9ac397ab6871cc1184e90c948e3",
+      "version": 1,
+      "state_json": "{\"room\":\"站台\",\"inventory\":[],\"turns\":1,\"hints\":0,\"status\":\"playing\"}"
+    }
+  ],
+  "history_counts": [
+    {
+      "session_id": "3c7164de9c054ac8811ecf5ac6f347bd",
+      "actions": 16
+    },
+    {
+      "session_id": "4c4496c9499d87b7289660d35c18c7c2",
+      "actions": 11
+    },
+    {
+      "session_id": "5a273d082e3388b89d79367562edf935",
+      "actions": 10
+    },
+    {
+      "session_id": "95eef9ac397ab6871cc1184e90c948e3",
+      "actions": 1
+    }
+  ],
+  "dify_nodes": [
+    {
+      "node_id": "start",
+      "node_type": "start",
+      "title": "玩家输入",
+      "status": "succeeded",
+      "elapsed_time": 0.006878,
+      "error": null
+    },
+    {
+      "node_id": "prepare",
+      "node_type": "code",
+      "title": "校验输入与构造请求",
+      "status": "succeeded",
+      "elapsed_time": 0.037567,
+      "error": null
+    },
+    {
+      "node_id": "context",
+      "node_type": "http-request",
+      "title": "seekdb读取存档与场景证据",
+      "status": "succeeded",
+      "elapsed_time": 0.014326,
+      "error": null
+    },
+    {
+      "node_id": "game",
+      "node_type": "code",
+      "title": "行动判断、线索组合与胜负",
+      "status": "succeeded",
+      "elapsed_time": 0.038059,
+      "error": null
+    },
+    {
+      "node_id": "save",
+      "node_type": "http-request",
+      "title": "seekdb事务保存进度与行动记录",
+      "status": "succeeded",
+      "elapsed_time": 0.015437,
+      "error": null
+    },
+    {
+      "node_id": "confirm",
+      "node_type": "code",
+      "title": "确认持久化结果",
+      "status": "succeeded",
+      "elapsed_time": 0.040867,
+      "error": null
+    },
+    {
+      "node_id": "end",
+      "node_type": "end",
+      "title": "返回故事与下一步选项",
+      "status": "succeeded",
+      "elapsed_time": 0.01405,
+      "error": null
+    }
+  ],
+  "passed": true,
+  "github_run": "44006878568"
+}

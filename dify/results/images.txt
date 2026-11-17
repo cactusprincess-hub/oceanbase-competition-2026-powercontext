@@ -1,0 +1,16 @@
+REPOSITORY                                   TAG       DIGEST                                                                    IMAGE ID       CREATED              SIZE
+midnight-game-game                           latest    <none>                                                                    32ba648afaa6   About a minute ago   234MB
+postgres                                     <none>    sha256:23799e521dee9265a8b388ecf3bc0f1eaa34b95be67f5a76af4f8f6adb44c720   24084862c6bc   4 days ago           292MB
+ghcr.io/github/gh-aw-mcpg                    latest    sha256:342cd624e1f179d91be2de7a146fc4f387092e62e6c8a47506d7932e113d2311   063c1ead6237   7 days ago           183MB
+ghcr.io/dependabot/dependabot-updater-core   latest    sha256:e67792c8431ffbaf073d59947043eada6654b399500e3913a18448b95427ee6e   e757711eb525   7 days ago           829MB
+ghcr.io/github/gh-aw-firewall/squid          latest    sha256:861739ecf924dd2db5e5fb652db2ad82aaafd1615623297ddabc8f41a36b2847   fab73dca7c65   7 days ago           57.5MB
+ghcr.io/github/gh-aw-firewall/agent          latest    sha256:8774a73c351395b41d2ad0af4ddb4689007c67de3cd08bd9f43bb8a0e300690e   ddf7cd3c72b9   7 days ago           1.02GB
+redis                                        <none>    sha256:3f9c6e23ed6bea3b41d0ef709fc164c1a0b7c00d5a21a60e0e9c33ada5496881   7591c8f8a3f0   7 days ago           28.3MB
+ghcr.io/github/gh-aw-firewall/api-proxy      latest    sha256:88d2d0e315a504d93fd4fb8847fd0f6b7f4469f41a6fc6047b3dc9654c56ab2c   91e877ccfe6c   7 days ago           376MB
+ghcr.io/github/github-mcp-server             latest    sha256:f6056fc10bfffcc8c81a6417a2e9ca12808647e8dd6049642a4feaadee0e0f8a   84e9c718c0fa   13 days ago          50.2MB
+oceanbase/seekdb                             <none>    sha256:4db4961869d554313520d6081fca29265ba6da6db7313311bd8acbed771a956b   e6f53d3ee841   5 weeks ago          596MB
+ubuntu/squid                                 <none>    sha256:6a097f68bae708cedbabd6188d68c7e2e7a38cedd05a176e1cc0ba29e3bbe029   f49c57d20819   11 months ago        205MB
+langgenius/dify-web                          <none>    sha256:53af9883e89e96eac6885a9519c5230d89ba112855d6f98b0d907656e02ead81   31efe73f5ee3   13 months ago        575MB
+langgenius/dify-api                          <none>    sha256:c38936ee0149f8fabfb5f02ac716c545aa758ceef78c2369c733a86f8713aad4   cba52271dd65   13 months ago        2.26GB
+langgenius/dify-plugin-daemon                <none>    sha256:22fb3bed3803b094b779a1db2684797e2feeae339f9612273fec7db14ecd03cd   c092482a52f3   14 months ago        1.38GB
+langgenius/dify-sandbox                      <none>    sha256:4e65e8a351a2b17d11750b65403527a347e5cb938bc2271521ca7d689c008ad3   ba1b250b9505   18 months ago        578MB
