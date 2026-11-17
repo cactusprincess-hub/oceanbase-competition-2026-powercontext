@@ -55,7 +55,7 @@ python3 scripts/play.py YOUR_32_HEX_SESSION_ID
 1. 启动 `seekdb` 和 `game` 服务：`python3 scripts/init-env.py && docker compose up -d --build seekdb game`。
 2. 在 Dify Studio 选择“导入 DSL 文件”，上传 `midnight.yml`。
 3. 设置工作流环境变量 `game_url` 为 Dify 服务器可达的数据服务地址，`game_token` 为本地 `.env` 中 `GAME_TOKEN` 的值。本文完整 Compose 部署中地址是 `http://game:3100`；已有实例需要按实际网络配置。
-4. 确保 HTTP 节点的代理仅允许访问指定游戏服务。随作品提供的 `squid.conf` 只允许 `game:3100`；Code 沙箱关闭网络，代码节点无需网络请求。
+4. 确保 HTTP 节点的代理仅允许访问指定游戏服务。随作品提供的 `squid.conf` 只允许 `game:3100`；Code 沙箱仅连接专用隔离网络，代码节点无需网络请求。
 5. 发布工作流，在工作流运行面板中输入32位小写十六进制 `session_id` 和行动指令。
 
 ## 完整游玩样例（含解谜答案）
@@ -93,4 +93,4 @@ python3 tests/acceptance.py
 
 验收使用发布后的 Dify `/v1/workflows/run`，包含完整通关、错误密码、缺失证据、失败重开、提示、独立存档、真实 seekdb 进程重启恢复。还临时把数据库中的站台编号从04改为09：原密码失败，新密码231709成功，随后恢复初始素材，证明实际数据影响玩法。验收只操作本作品的独立部署。
 
-`results/acceptance.json` 保存实际 workflow run ID、完整故事回复、七个节点执行状态和数据库持久化快照；`results/dify-export.yml` 是真实 Dify 导出的 DSL（不含服务密钥）。CI 同时生成镜像清单。验收结果和运行链接以 `results/README.md` 为准；本地验证不等于官方得分。
+`results/acceptance.json` 保存实际 workflow run ID、完整故事回复、七个节点执行状态和数据库持久化快照；`results/dify-export.yml` 是真实 Dify 导出的 DSL（不含服务密钥）。CI 同时生成镜像清单。验收结果和运行链接以 `results/README.md` 为准；本地验证不等于官方得分。浏览器验收另存桌面与手机截图，并验证刷新续接。

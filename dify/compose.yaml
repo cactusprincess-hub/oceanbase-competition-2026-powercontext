@@ -72,6 +72,7 @@ services:
       redis: {condition: service_started}
     volumes: [dify-storage:/app/api/storage]
     ports: ['127.0.0.1:5001:5001']
+    networks: [default, sandbox-isolated]
   worker:
     image: langgenius/dify-api:1.9.1
     environment:
@@ -85,9 +86,10 @@ services:
     environment:
       API_KEY: ${SANDBOX_KEY}
       GIN_MODE: release
-      ENABLE_NETWORK: 'false'
+      ENABLE_NETWORK: 'true'
       WORKER_TIMEOUT: 15
     volumes: [sandbox-deps:/dependencies]
+    networks: [sandbox-isolated]
   ssrf_proxy:
     image: ubuntu/squid:latest
     volumes: ['./squid.conf:/etc/squid/squid.conf:ro']
@@ -123,3 +125,7 @@ volumes:
   dify-storage:
   sandbox-deps:
   plugin-storage:
+
+networks:
+  sandbox-isolated:
+    internal: true
