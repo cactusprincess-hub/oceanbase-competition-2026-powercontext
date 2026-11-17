@@ -32,13 +32,12 @@ flowchart LR
 ```bash
 git clone --branch 2026-competition-ecosystem https://github.com/cactusprincess-hub/oceanbase-competition-2026-powercontext.git
 cd oceanbase-competition-2026-powercontext/dify
-python3 scripts/init-env.py
-docker compose up -d --build
-python3 scripts/bootstrap.py
-python3 scripts/web.py
+bash start.sh
 ```
 
 打开 **http://localhost:8090**。首次数据库启动需要数分钟，bootstrap 会等待就绪。`bootstrap.py` 为本作品独立的本地 Dify 创建账户、导入 DSL、发布工作流和生成应用 Key；它只连接 `127.0.0.1:5001`。密码和内部服务密钥随机生成并仅存在本地 `.env`；应用 Key 写入本地 `.runtime.json`。两者均被 Git 忽略，不要提交到仓库。
+
+`bash start.sh --check` 检查 Docker Engine、Compose 和配置；`bash start.sh --acceptance` 完成启动、DSL导入、服务地址与密钥绑定、发布和完整验收。该入口与CI使用同一流程。`.env.example` 仅列出配置项，实际值由脚本随机生成，无需准备付费模型Key。直接导入空密钥的DSL后，仍须按下节绑定数据服务；完整启动入口会自动完成绑定。
 
 Dify 工作流编辑界面：**http://localhost:8080**，账号 `player@example.com`，密码是 `.env` 的 `DIFY_ADMIN_PASSWORD`。应用名“午夜失物招领”。在编辑器中点击运行，输入 `session_id` 和 `command` 即可；多次运行使用同一 ID。浏览器游戏会自动生成并保存独立 ID。
 

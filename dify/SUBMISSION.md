@@ -6,6 +6,7 @@
 - 分支：`2026-competition-ecosystem`。
 - 作品目录：`dify/`。
 - 启动及完整游玩说明：[README.md](README.md)。
+- 自动配置、导入、发布并启动：在 `dify/` 执行 `bash start.sh`；完整验收执行 `bash start.sh --acceptance`。
 - 可导入DSL：[midnight.yml](midnight.yml)，及[真实Dify导出DSL](results/dify-export.yml)。
 - 源码：`workflow/` 的Code节点承担游戏核心规则，`server/`提供真实seekdb事务存储，`web/`和`scripts/web.py`提供网页体验。
 - 初始化数据：[scenes.json](scenes.json)，首次启动自动入库。

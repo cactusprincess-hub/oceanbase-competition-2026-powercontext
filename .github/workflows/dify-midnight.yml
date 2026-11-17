@@ -23,14 +23,8 @@ jobs:
           npm ci --ignore-scripts
           python3 scripts/init-env.py
           docker compose config --quiet
-      - name: Start Dify and seekdb
-        run: docker compose up -d --build
-      - name: Import and publish actual Dify DSL
-        run: python3 scripts/bootstrap.py
-      - name: Real seekdb storage and HTTP behavior
-        run: docker compose exec -T game sh -c 'cd /app && node --test /app/tests/*.test.mjs'
-      - name: Actual published workflow acceptance
-        run: python3 tests/acceptance.py
+      - name: Start, import and verify through the documented entry point
+        run: bash start.sh --acceptance
       - name: Browser walkthrough and screenshots
         run: |
           sudo apt-get update -qq
