@@ -33,7 +33,9 @@ jobs:
         run: python3 tests/acceptance.py
       - name: Record image digests
         if: always()
-        run: docker image ls --digests > results/images.txt
+        run: |
+          mkdir -p results
+          docker image ls --digests > results/images.txt
       - name: Diagnostics
         if: failure()
         run: |

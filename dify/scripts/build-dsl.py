@@ -41,7 +41,7 @@ code("game", "行动判断、线索组合与胜负", "game.py", {"body": ["conte
 http("save", "seekdb事务保存进度与行动记录", "commit", "game")
 code("confirm", "确认持久化结果", "confirm.py", {"body": ["save", "body"], "status_code": ["save", "status_code"]}, {"reply": "string", "status": "string", "version": "number", "state": "string"})
 node("end", "end", "返回故事与下一步选项", outputs=[{"variable": key, "value_selector": ["confirm", key], "value_type": kind} for key, kind in [("reply", "string"), ("status", "string"), ("version", "number"), ("state", "string")]])
-app = {"version": "0.3.0", "kind": "app", "dependencies": [],
+app = {"version": "0.4.0", "kind": "app", "dependencies": [],
        "app": {"name": "午夜失物招领", "description": "12次行动内解开午夜车站的失物箱。Dify负责游戏规则，seekdb保存证据与跨次进度，无需模型Key。", "icon": "🌙", "icon_type": "emoji", "icon_background": "#E8E5FF", "mode": "workflow", "use_icon_as_answer_icon": False},
        "workflow": {"conversation_variables": [], "environment_variables": [
            {"id": "c4e83210-67ba-493f-91f0-000000000001", "name": "game_url", "value": "http://game:3100", "value_type": "string", "description": "seekdb数据服务地址", "selector": ["env", "game_url"]},

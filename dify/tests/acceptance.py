@@ -10,6 +10,7 @@ import time
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 from client import ROOT, env, request, run, wait
 
+(ROOT / "results").mkdir(exist_ok=True)
 results = {"environment": {"dify": "1.9.1", "seekdb": "1.4.0", "engine": "Dify published workflow (not a mock)"}, "scenarios": []}
 runtime = json.loads((ROOT / ".runtime.json").read_text())
 
