@@ -247,6 +247,10 @@ async def search_pdf_pages(
         return ()
     ordered = _rank_pdf_hits(question, tuple(hits.values()), rank_scores, best_scores)
     ordered = await _rank_neighboring_pages(memory, ordered, limit)
+    # Every page projection starts with its document ID. Keep an explicitly
+    # requested company's report ahead of similar statements from other
+    # companies, without excluding reports when the ID is opaque.
+    ordered = tuple(sorted(ordered, key=lambda hit: _document_query_match(question, hit.text), reverse=True))
     return tuple(
         MemoryCitation(
             memory_ref=hit.memory_ref,
@@ -258,9 +262,26 @@ async def search_pdf_pages(
 
 
 def _document_id(value: str) -> str:
-    if not value or value != value.strip():
-        raise ValueError("document_id must be non-empty and have no surrounding whitespace")
+    if not value.strip():
+        raise ValueError("document_id must not be blank")
     return value
+
+
+def _document_query_match(question: str, text: str) -> tuple[bool, bool]:
+    document_id = text.partition("\n")[0]
+    name = re.split(r"(?:^|[^a-z0-9])(?:19|20)\d{2}(?:[^a-z0-9]|$)", document_id.casefold(), maxsplit=1)[0]
+    legal_suffixes = {"the", "inc", "incorporated", "corp", "corporation", "company", "co", "ltd", "plc", "llc"}
+    name_terms = [term for term in re.findall(r"[a-z0-9]+", name) if term not in legal_suffixes]
+    compact_name = "".join(name_terms)
+    question_terms = re.findall(r"[a-z0-9]+", question.casefold())
+    company_match = len(compact_name) >= 2 and any(
+        "".join(question_terms[start:end]) == compact_name
+        for start in range(len(question_terms))
+        for end in range(start + 1, min(len(question_terms), start + len(name_terms) + 2) + 1)
+    )
+    requested_years = set(re.findall(r"(?:19|20)\d{2}", question))
+    document_years = set(re.findall(r"(?:19|20)\d{2}", document_id))
+    return company_match, company_match and bool(requested_years & document_years)
 
 
 def _page_source_id(document_id: str, document_hash: str, page_number: int) -> str:
