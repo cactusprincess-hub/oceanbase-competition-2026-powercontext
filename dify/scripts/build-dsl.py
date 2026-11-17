@@ -27,7 +27,7 @@ def code(id, title, filename, inputs, outputs):
 def http(id, title, route, source):
     node(id, "http-request", title, method="POST", url="{{#env.game_url#}}/" + route,
          authorization={"type": "no-auth"}, headers="Content-Type: application/json\nAuthorization: Bearer {{#env.game_token#}}",
-         params="", body={"type": "raw-text", "data": [{"type": "text", "text": "{{#" + source + ".body#}}", "key": "", "id": "body"}]},
+         params="", body={"type": "raw-text", "data": [{"type": "text", "value": "{{#" + source + ".body#}}", "key": "", "id": "body"}]},
          timeout={"connect": 10, "read": 30, "write": 30},
          retry_config={"retry_enabled": False, "max_retries": 1, "retry_interval": 1000})
 

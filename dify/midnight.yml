@@ -173,7 +173,7 @@
               "data": [
                 {
                   "type": "text",
-                  "text": "{{#prepare.body#}}",
+                  "value": "{{#prepare.body#}}",
                   "key": "",
                   "id": "body"
                 }
@@ -278,7 +278,7 @@
               "data": [
                 {
                   "type": "text",
-                  "text": "{{#game.body#}}",
+                  "value": "{{#game.body#}}",
                   "key": "",
                   "id": "body"
                 }
