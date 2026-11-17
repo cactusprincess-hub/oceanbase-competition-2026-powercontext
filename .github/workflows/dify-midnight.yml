@@ -1,0 +1,49 @@
+name: Dify midnight acceptance
+on:
+  workflow_dispatch:
+  push:
+    branches: [2026-competition-ecosystem]
+    paths: ['dify/**', '.github/workflows/dify-midnight.yml']
+permissions:
+  contents: read
+jobs:
+  real-dify-seekdb:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: dify
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.16.0'
+      - name: Install pinned dependencies and initialize isolated secrets
+        run: |
+          npm ci --ignore-scripts
+          python3 scripts/init-env.py
+          docker compose config --quiet
+      - name: Start Dify and seekdb
+        run: docker compose up -d --build
+      - name: Import and publish actual Dify DSL
+        run: python3 scripts/bootstrap.py
+      - name: Real seekdb storage and HTTP behavior
+        run: docker compose exec -T game sh -c 'cd /app && node --test /app/tests/*.test.mjs'
+      - name: Actual published workflow acceptance
+        run: python3 tests/acceptance.py
+      - name: Record image digests
+        if: always()
+        run: docker image ls --digests > results/images.txt
+      - name: Diagnostics
+        if: failure()
+        run: |
+          docker compose ps
+          docker compose logs --tail 100 api worker sandbox ssrf_proxy game seekdb plugin_daemon
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dify-midnight-real-run
+          path: dify/results/
+      - name: Stop isolated deployment
+        if: always()
+        run: docker compose down -v

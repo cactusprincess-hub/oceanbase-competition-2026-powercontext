@@ -1,0 +1,6 @@
+[
+  {"room":"大厅","description":"末班车驶离后，你在午夜车站醒来。失物箱里躺着回家的车票，电子锁只剩十二次行动的电量。","clue_id":"note","clue_text":"潦草便签写着：000000。背面却印着『样品，请勿当作真实密码』。","fragment":"","ordinal":0},
+  {"room":"站台","description":"空荡的站台上，一只机械钟停在末班车离开的时刻。","clue_id":"clock","clue_text":"站台机械钟：23:17。钟面下刻着『记录离站时刻』。","fragment":"2317","ordinal":1},
+  {"room":"仓库","description":"失物架上只剩一张旧票根，目的站已经褪色。","clue_id":"ticket","clue_text":"旧票根上保留着『站台编号：04』；票号 9852 已被划掉。","fragment":"04","ordinal":2},
+  {"room":"广播室","description":"广播控制台仍亮着微弱的绿灯。最后一条值班记录可以调阅。","clue_id":"rule","clue_text":"值班记录：先写四位离站时刻，再接两位站台编号。必须核对机械钟、票根和本记录，才能开启失物箱。","fragment":"","ordinal":3}
+]

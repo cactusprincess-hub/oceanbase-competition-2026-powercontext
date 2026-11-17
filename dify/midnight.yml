@@ -1,0 +1,528 @@
+{
+  "version": "0.3.0",
+  "kind": "app",
+  "dependencies": [],
+  "app": {
+    "name": "午夜失物招领",
+    "description": "12次行动内解开午夜车站的失物箱。Dify负责游戏规则，seekdb保存证据与跨次进度，无需模型Key。",
+    "icon": "🌙",
+    "icon_type": "emoji",
+    "icon_background": "#E8E5FF",
+    "mode": "workflow",
+    "use_icon_as_answer_icon": false
+  },
+  "workflow": {
+    "conversation_variables": [],
+    "environment_variables": [
+      {
+        "id": "c4e83210-67ba-493f-91f0-000000000001",
+        "name": "game_url",
+        "value": "http://game:3100",
+        "value_type": "string",
+        "description": "seekdb数据服务地址",
+        "selector": [
+          "env",
+          "game_url"
+        ]
+      },
+      {
+        "id": "c4e83210-67ba-493f-91f0-000000000002",
+        "name": "game_token",
+        "value": "",
+        "value_type": "secret",
+        "description": "填写本地GAME_TOKEN",
+        "selector": [
+          "env",
+          "game_token"
+        ]
+      }
+    ],
+    "features": {
+      "file_upload": {
+        "enabled": false
+      },
+      "opening_statement": "",
+      "retriever_resource": {
+        "enabled": false
+      },
+      "sensitive_word_avoidance": {
+        "enabled": false
+      },
+      "speech_to_text": {
+        "enabled": false
+      },
+      "suggested_questions": [],
+      "suggested_questions_after_answer": {
+        "enabled": false
+      },
+      "text_to_speech": {
+        "enabled": false
+      }
+    },
+    "graph": {
+      "nodes": [
+        {
+          "id": "start",
+          "type": "custom",
+          "data": {
+            "type": "start",
+            "title": "玩家输入",
+            "desc": "",
+            "selected": false,
+            "variables": [
+              {
+                "variable": "session_id",
+                "label": "存档ID（32位小写十六进制）",
+                "type": "text-input",
+                "required": true,
+                "max_length": 32,
+                "options": []
+              },
+              {
+                "variable": "command",
+                "label": "命令，例如：开始、去站台、查看",
+                "type": "text-input",
+                "required": true,
+                "max_length": 100,
+                "options": []
+              }
+            ]
+          },
+          "position": {
+            "x": 50,
+            "y": 180
+          },
+          "positionAbsolute": {
+            "x": 50,
+            "y": 180
+          },
+          "height": 100,
+          "width": 244,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "selected": false
+        },
+        {
+          "id": "prepare",
+          "type": "custom",
+          "data": {
+            "type": "code",
+            "title": "校验输入与构造请求",
+            "desc": "",
+            "selected": false,
+            "code_language": "python3",
+            "code": "import json\nimport re\n\n\ndef main(session_id: str, command: str) -> dict:\n    if not re.fullmatch(r\"[a-f0-9]{32}\", session_id):\n        raise ValueError(\"session_id 必须为32位小写十六进制字符串；请先生成独立的游戏存档编号\")\n    if not command.strip() or len(command) > 100:\n        raise ValueError(\"命令不能为空且不能超过100个字符\")\n    return {\"body\": json.dumps({\"session_id\": session_id}), \"command\": command.strip()}\n",
+            "variables": [
+              {
+                "variable": "session_id",
+                "value_selector": [
+                  "start",
+                  "session_id"
+                ]
+              },
+              {
+                "variable": "command",
+                "value_selector": [
+                  "start",
+                  "command"
+                ]
+              }
+            ],
+            "outputs": {
+              "body": {
+                "type": "string",
+                "children": null
+              },
+              "command": {
+                "type": "string",
+                "children": null
+              }
+            }
+          },
+          "position": {
+            "x": 360,
+            "y": 180
+          },
+          "positionAbsolute": {
+            "x": 360,
+            "y": 180
+          },
+          "height": 100,
+          "width": 244,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "selected": false
+        },
+        {
+          "id": "context",
+          "type": "custom",
+          "data": {
+            "type": "http-request",
+            "title": "seekdb读取存档与场景证据",
+            "desc": "",
+            "selected": false,
+            "method": "POST",
+            "url": "{{#env.game_url#}}/context",
+            "authorization": {
+              "type": "no-auth"
+            },
+            "headers": "Content-Type: application/json\nAuthorization: Bearer {{#env.game_token#}}",
+            "params": "",
+            "body": {
+              "type": "raw-text",
+              "data": [
+                {
+                  "type": "text",
+                  "text": "{{#prepare.body#}}",
+                  "key": "",
+                  "id": "body"
+                }
+              ]
+            },
+            "timeout": {
+              "connect": 10,
+              "read": 30,
+              "write": 30
+            },
+            "retry_config": {
+              "retry_enabled": false,
+              "max_retries": 1,
+              "retry_interval": 1000
+            }
+          },
+          "position": {
+            "x": 670,
+            "y": 180
+          },
+          "positionAbsolute": {
+            "x": 670,
+            "y": 180
+          },
+          "height": 100,
+          "width": 244,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "selected": false
+        },
+        {
+          "id": "game",
+          "type": "custom",
+          "data": {
+            "type": "code",
+            "title": "行动判断、线索组合与胜负",
+            "desc": "",
+            "selected": false,
+            "code_language": "python3",
+            "code": "import json\n\n\ndef main(body: str, command: str, status_code: int) -> dict:\n    if status_code != 200:\n        raise ValueError(\"线索读取失败，未执行行动；请检查数据服务\")\n    context = json.loads(body)\n    state = context[\"state\"]\n    scenes = {scene[\"room\"]: scene for scene in context[\"scenes\"]}\n    command = command.strip()\n    message = \"\"\n    if command in (\"重来\", \"开始\"):\n        state = {\"room\": \"大厅\", \"inventory\": [], \"turns\": 0, \"hints\": 0, \"status\": \"playing\"}\n        message = scenes[\"大厅\"][\"description\"] + \" 先试试『去站台』。\"\n    elif command in (\"帮助\", \"状态\", \"背包\"):\n        message = \"探索四个地点，查看并收集证据，回到大厅打开失物箱。帮助、状态、背包不消耗电量。\"\n    elif state[\"status\"] != \"playing\":\n        message = \"这一局已结束。输入『重来』可开始新一局。\"\n    elif command == \"提示\":\n        state[\"turns\"] += 1\n        state[\"hints\"] += 1\n        needed = [room for room in (\"站台\", \"仓库\", \"广播室\") if scenes[room][\"clue_id\"] not in state[\"inventory\"]]\n        message = \"试着去\" + needed[0] + \"，然后『查看』。\" if needed else \"证据已齐，回大厅，按照值班记录组合密码。\"\n    elif command.startswith(\"去\") and command[1:].strip() in scenes:\n        state[\"room\"] = command[1:].strip()\n        state[\"turns\"] += 1\n        message = scenes[state[\"room\"]][\"description\"]\n    elif command == \"查看\":\n        state[\"turns\"] += 1\n        scene = scenes[state[\"room\"]]\n        if scene[\"clue_id\"] not in state[\"inventory\"]:\n            state[\"inventory\"].append(scene[\"clue_id\"])\n        message = \"【\" + scene[\"clue_id\"] + \"】\" + scene[\"clue_text\"]\n    elif command.startswith(\"打开\"):\n        if state[\"room\"] != \"大厅\":\n            message = \"失物箱在大厅。输入『去大厅』返回。\"\n        else:\n            state[\"turns\"] += 1\n            code = command[2:].strip()\n            required = {scenes[room][\"clue_id\"] for room in (\"站台\", \"仓库\", \"广播室\")}\n            if not required.issubset(set(state[\"inventory\"])):\n                message = \"锁屏提示：证据不足。请先查看机械钟、旧票根与值班记录。\"\n            elif code != scenes[\"站台\"][\"fragment\"] + scenes[\"仓库\"][\"fragment\"]:\n                message = \"密码错误，失物箱轻轻闪了一下红灯。别把划掉的票号当成站台号。\"\n            else:\n                state[\"status\"] = \"won\"\n                message = \"失物箱打开了！里面是你的车票，还有一行字：『最后一班车，会等找回自己的人。』你成功回家。\"\n    else:\n        message = \"没听懂这条指令。请使用下方选项；无效指令不消耗电量。\"\n    if state[\"turns\"] >= 12 and state[\"status\"] == \"playing\":\n        state[\"status\"] = \"lost\"\n        message += \" 电量耗尽，天亮前无法开箱。输入『重来』再试一次。\"\n    score = max(0, 100 - state[\"turns\"] * 3 - state[\"hints\"] * 8) if state[\"status\"] == \"won\" else 0\n    evidence = [scene[\"clue_text\"] for scene in context[\"scenes\"] if scene[\"clue_id\"] in state[\"inventory\"]]\n    reply = (message + \"\\n\\n地点：\" + state[\"room\"] + \" | 剩余行动：\" + str(12 - state[\"turns\"]) +\n             \" | 状态：\" + state[\"status\"] + \" | 得分：\" + str(score) +\n             \"\\n证据背包：\" + (\"；\".join(evidence) or \"空\") +\n             \"\\n可用指令：去大厅 / 去站台 / 去仓库 / 去广播室 / 查看 / 打开 <密码> / 提示 / 背包 / 状态 / 重来\")\n    payload = {\"session_id\": context[\"session_id\"], \"version\": context[\"version\"], \"state\": state, \"command\": command, \"reply\": reply}\n    return {\"body\": json.dumps(payload, ensure_ascii=False)}\n",
+            "variables": [
+              {
+                "variable": "body",
+                "value_selector": [
+                  "context",
+                  "body"
+                ]
+              },
+              {
+                "variable": "status_code",
+                "value_selector": [
+                  "context",
+                  "status_code"
+                ]
+              },
+              {
+                "variable": "command",
+                "value_selector": [
+                  "prepare",
+                  "command"
+                ]
+              }
+            ],
+            "outputs": {
+              "body": {
+                "type": "string",
+                "children": null
+              }
+            }
+          },
+          "position": {
+            "x": 980,
+            "y": 180
+          },
+          "positionAbsolute": {
+            "x": 980,
+            "y": 180
+          },
+          "height": 100,
+          "width": 244,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "selected": false
+        },
+        {
+          "id": "save",
+          "type": "custom",
+          "data": {
+            "type": "http-request",
+            "title": "seekdb事务保存进度与行动记录",
+            "desc": "",
+            "selected": false,
+            "method": "POST",
+            "url": "{{#env.game_url#}}/commit",
+            "authorization": {
+              "type": "no-auth"
+            },
+            "headers": "Content-Type: application/json\nAuthorization: Bearer {{#env.game_token#}}",
+            "params": "",
+            "body": {
+              "type": "raw-text",
+              "data": [
+                {
+                  "type": "text",
+                  "text": "{{#game.body#}}",
+                  "key": "",
+                  "id": "body"
+                }
+              ]
+            },
+            "timeout": {
+              "connect": 10,
+              "read": 30,
+              "write": 30
+            },
+            "retry_config": {
+              "retry_enabled": false,
+              "max_retries": 1,
+              "retry_interval": 1000
+            }
+          },
+          "position": {
+            "x": 1290,
+            "y": 180
+          },
+          "positionAbsolute": {
+            "x": 1290,
+            "y": 180
+          },
+          "height": 100,
+          "width": 244,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "selected": false
+        },
+        {
+          "id": "confirm",
+          "type": "custom",
+          "data": {
+            "type": "code",
+            "title": "确认持久化结果",
+            "desc": "",
+            "selected": false,
+            "code_language": "python3",
+            "code": "import json\n\n\ndef main(body: str, status_code: int) -> dict:\n    result = json.loads(body)\n    if status_code != 200 or not result.get(\"saved\"):\n        raise ValueError(result.get(\"error\", \"进度保存失败；请稍后重试\"))\n    return {\"reply\": result[\"reply\"], \"status\": result[\"state\"][\"status\"],\n            \"version\": result[\"version\"], \"state\": json.dumps(result[\"state\"], ensure_ascii=False)}\n",
+            "variables": [
+              {
+                "variable": "body",
+                "value_selector": [
+                  "save",
+                  "body"
+                ]
+              },
+              {
+                "variable": "status_code",
+                "value_selector": [
+                  "save",
+                  "status_code"
+                ]
+              }
+            ],
+            "outputs": {
+              "reply": {
+                "type": "string",
+                "children": null
+              },
+              "status": {
+                "type": "string",
+                "children": null
+              },
+              "version": {
+                "type": "number",
+                "children": null
+              },
+              "state": {
+                "type": "string",
+                "children": null
+              }
+            }
+          },
+          "position": {
+            "x": 1600,
+            "y": 180
+          },
+          "positionAbsolute": {
+            "x": 1600,
+            "y": 180
+          },
+          "height": 100,
+          "width": 244,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "selected": false
+        },
+        {
+          "id": "end",
+          "type": "custom",
+          "data": {
+            "type": "end",
+            "title": "返回故事与下一步选项",
+            "desc": "",
+            "selected": false,
+            "outputs": [
+              {
+                "variable": "reply",
+                "value_selector": [
+                  "confirm",
+                  "reply"
+                ],
+                "value_type": "string"
+              },
+              {
+                "variable": "status",
+                "value_selector": [
+                  "confirm",
+                  "status"
+                ],
+                "value_type": "string"
+              },
+              {
+                "variable": "version",
+                "value_selector": [
+                  "confirm",
+                  "version"
+                ],
+                "value_type": "number"
+              },
+              {
+                "variable": "state",
+                "value_selector": [
+                  "confirm",
+                  "state"
+                ],
+                "value_type": "string"
+              }
+            ]
+          },
+          "position": {
+            "x": 1910,
+            "y": 180
+          },
+          "positionAbsolute": {
+            "x": 1910,
+            "y": 180
+          },
+          "height": 100,
+          "width": 244,
+          "sourcePosition": "right",
+          "targetPosition": "left",
+          "selected": false
+        }
+      ],
+      "edges": [
+        {
+          "id": "start-prepare",
+          "source": "start",
+          "target": "prepare",
+          "sourceHandle": "source",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0,
+          "data": {
+            "sourceType": "start",
+            "targetType": "code",
+            "isInIteration": false,
+            "isInLoop": false
+          }
+        },
+        {
+          "id": "prepare-context",
+          "source": "prepare",
+          "target": "context",
+          "sourceHandle": "source",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0,
+          "data": {
+            "sourceType": "code",
+            "targetType": "http-request",
+            "isInIteration": false,
+            "isInLoop": false
+          }
+        },
+        {
+          "id": "context-game",
+          "source": "context",
+          "target": "game",
+          "sourceHandle": "source",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0,
+          "data": {
+            "sourceType": "http-request",
+            "targetType": "code",
+            "isInIteration": false,
+            "isInLoop": false
+          }
+        },
+        {
+          "id": "game-save",
+          "source": "game",
+          "target": "save",
+          "sourceHandle": "source",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0,
+          "data": {
+            "sourceType": "code",
+            "targetType": "http-request",
+            "isInIteration": false,
+            "isInLoop": false
+          }
+        },
+        {
+          "id": "save-confirm",
+          "source": "save",
+          "target": "confirm",
+          "sourceHandle": "source",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0,
+          "data": {
+            "sourceType": "http-request",
+            "targetType": "code",
+            "isInIteration": false,
+            "isInLoop": false
+          }
+        },
+        {
+          "id": "confirm-end",
+          "source": "confirm",
+          "target": "end",
+          "sourceHandle": "source",
+          "targetHandle": "target",
+          "type": "custom",
+          "zIndex": 0,
+          "data": {
+            "sourceType": "code",
+            "targetType": "end",
+            "isInIteration": false,
+            "isInLoop": false
+          }
+        }
+      ],
+      "viewport": {
+        "x": 0,
+        "y": 0,
+        "zoom": 0.65
+      }
+    }
+  }
+}

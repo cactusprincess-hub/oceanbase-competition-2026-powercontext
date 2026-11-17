@@ -4,3 +4,7 @@ dist/
 .seekdb/
 stepfun/models/
 stepfun/results/*.local.json
+
+# Dify local deployment secrets and bytecode
+dify/.runtime.json
+__pycache__/
